@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import router from "./routes/user.routes.js";
+/* const express = require("express"); */
 const app = express();
 
 app.use(

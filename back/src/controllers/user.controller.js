@@ -54,7 +54,7 @@ export const loginUser = async (req, res, next) => {
       domain: process.env.DOMAIN,
       maxAge: Date.now() + 1000 * 60 * 30,
     };
-    res.cookie("token-back", token, cookieOption);
+    res.cookie("token_back", token, cookieOption);
     res.json({user, token});
   } catch (error) {
     next(error);
@@ -83,5 +83,12 @@ export const verifyToken = async (req, res) => {
     if (!userFound) return res.status(401).json(["Unauthorized"]);
 
     return res.json(userFound);
+  });
+};
+export const getPedidos = async (req, res) => {
+  const user = req.user;
+  return res.json({
+    message: "pedido del usuario",
+    user: user,
   });
 };

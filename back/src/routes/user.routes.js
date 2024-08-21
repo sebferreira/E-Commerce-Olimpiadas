@@ -7,6 +7,7 @@ import {
   logoutUser,
   profileUser,
   verifyToken,
+  getPedidos,
 } from "../controllers/user.controller.js";
 import {revisarCookie} from "../middlewares/authorization.middleware.js";
 
@@ -17,5 +18,6 @@ router.post("/login", validateSchema(loginSchema), loginUser);
 router.post("/logout", logoutUser);
 router.get("/verify", verifyToken);
 router.get("/profile", revisarCookie, profileUser);
+router.get("/pedido", revisarCookie, getPedidos);
 
 export default router;
