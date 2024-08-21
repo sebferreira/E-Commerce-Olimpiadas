@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "nombre": "Juan",
+  "apellido": "Pérez",
+  "contrasena": "password123",
+  "email": "juan.perez@example.com",
+  "telefono": "123456789",
+  "rol": "Cliente",
+  "direccion_calle": "Calle Falsa",
+  "direccion_num_casa": "123",
+  "direccion_pais": "Argentina",
+  "direccion_provincia": "Buenos Aires",
+  "direccion_ciudad": "CABA",
+  "direccion_cod_postal": "1000",
+  "direccion_departamento": 0,
+  "direccion_piso": null
+}

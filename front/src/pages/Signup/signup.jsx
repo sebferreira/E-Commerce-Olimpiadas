@@ -106,7 +106,7 @@ export default function Signup() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Nombre is required
+                Nombre es necesario
               </Typography>
             )}
             <Typography
@@ -138,10 +138,9 @@ export default function Signup() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Apellido is required
+                Apellido es necesario
               </Typography>
             )}
-
             <Typography
               variant="h6"
               component="label"
@@ -150,7 +149,7 @@ export default function Signup() {
                 margin: 0,
                 fontSize: {xs: "1rem", md: "1.2rem"},
               }}>
-              Email
+              DNI
             </Typography>
             <TextField
               fullWidth
@@ -158,12 +157,12 @@ export default function Signup() {
                 display: "block",
                 marginBottom: {xs: "0.5rem", md: "1rem"},
               }}
-              type="email"
-              {...register("email", {required: true})}
+              type="number"
+              {...register("dni", {required: true})}
               size="small"
               variant="outlined"
             />
-            {errors.email && (
+            {errors.dni && (
               <Typography
                 color="error"
                 variant="body2"
@@ -171,9 +170,10 @@ export default function Signup() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Email is required
+                el dni es necesario
               </Typography>
             )}
+
             <Typography
               variant="h6"
               component="label"
@@ -203,7 +203,39 @@ export default function Signup() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Telefono is required
+                Telefono es necesario
+              </Typography>
+            )}
+            <Typography
+              variant="h6"
+              component="label"
+              textAlign="center"
+              sx={{
+                margin: 0,
+                fontSize: {xs: "1rem", md: "1.2rem"},
+              }}>
+              Email
+            </Typography>
+            <TextField
+              fullWidth
+              sx={{
+                display: "block",
+                marginBottom: {xs: "0.5rem", md: "1rem"},
+              }}
+              type="email"
+              {...register("email", {required: true})}
+              size="small"
+              variant="outlined"
+            />
+            {errors.email && (
+              <Typography
+                color="error"
+                variant="body2"
+                fontWeight="bold"
+                sx={{
+                  marginTop: "0.5rem",
+                }}>
+                Email es necesario
               </Typography>
             )}
             <Typography
@@ -235,7 +267,7 @@ export default function Signup() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Contraseña is required
+                Contraseña es necesario
               </Typography>
             )}
             <Typography
@@ -254,7 +286,7 @@ export default function Signup() {
                 display: "block",
                 marginBottom: {xs: "0.5rem", md: "1rem"},
               }}
-              type="confirmar"
+              type="password"
               {...register("confirmar", {required: true})}
               size="small"
               variant="outlined"
@@ -267,7 +299,7 @@ export default function Signup() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Confirmar Contraseña is required
+                Confirmar Contraseña es necesario
               </Typography>
             )}
 

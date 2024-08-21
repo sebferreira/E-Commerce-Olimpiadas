@@ -1,14 +1,11 @@
-import {
-  Box,
-  ListItem,
-  List,
-  ListItemButton,
-  ListItemText,
-  ListItemIcon,
-} from "@mui/material";
-import {Link} from "react-router-dom";
+import {Box, Divider, List} from "@mui/material";
 import {useAuth} from "../../../context/AuthContext";
-import {navLinks, navLinksAuthenticated} from "../../../scripts/NavbarLinks";
+import {
+  navLinks,
+  navLinksAuthenticated,
+  navLinksCategory,
+} from "../../../scripts/NavbarLinks";
+import {buttonsMobileDrawerHome} from "./buttonsDrawers";
 
 export default function NavDrawer() {
   const {isAuthenticated} = useAuth();
@@ -19,25 +16,17 @@ export default function NavDrawer() {
           <List>
             {isAuthenticated &&
               navLinksAuthenticated.map((item) => {
-                return (
-                  <ListItem disablePadding key={item.label}>
-                    <ListItemButton component={Link} to={item.href}>
-                      <ListItemIcon>{item.icon}</ListItemIcon>
-                      <ListItemText primary={item.label} />
-                    </ListItemButton>
-                  </ListItem>
-                );
+                return buttonsMobileDrawerHome(item);
               })}
+            <Divider />
+            {isAuthenticated &&
+              navLinksCategory.map((item) => {
+                return buttonsMobileDrawerHome(item);
+              })}
+
             {!isAuthenticated &&
               navLinks.map((item) => {
-                return (
-                  <ListItem disablePadding key={item.label}>
-                    <ListItemButton component={Link} to={item.href}>
-                      <ListItemIcon>{item.icon}</ListItemIcon>
-                      <ListItemText primary={item.label} />
-                    </ListItemButton>
-                  </ListItem>
-                );
+                return buttonsMobileDrawerHome(item);
               })}
           </List>
         </nav>

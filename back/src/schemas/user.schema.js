@@ -31,6 +31,16 @@ export const registerSchema = z.object({
     .max(10, {
       message: "numero no puede exceder los 10 caracteres",
     }),
+  dni: z
+    .string({
+      required_error: "DNI es requerido",
+    })
+    .min(8, {
+      message: "DNI no puede tener menos de 8 caracteres",
+    })
+    .max(8, {
+      message: "DNI no puede exceder los 8 caracteres",
+    }),
   email: z
     .string({
       required_error: "Email es requerido",
@@ -40,7 +50,7 @@ export const registerSchema = z.object({
     }),
   password: z
     .string({
-      required_error: "Passwordes requeridod",
+      required_error: "Passwordes requerido",
     })
     .min(8, {
       message: "Password debe tener al menos 8 caracteres",

@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import router from "./routes/user.routes.js";
+import routerProductos from "./routes/productos.routes.js";
 /* const express = require("express"); */
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended: true}));
 
 app.use("/api", router);
+app.use("/api/productos", routerProductos);
 
 //para que devuelva el error si es que hay alguno
 app.use((error, req, res, next) => {

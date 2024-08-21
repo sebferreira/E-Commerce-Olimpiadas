@@ -91,7 +91,7 @@ export default function Signin() {
                 display: "block",
                 marginBottom: "1rem",
               }}
-              type="text"
+              type="email"
               fontWeight="bold"
               {...register("email", {required: true})}
               size="small"

@@ -9,6 +9,7 @@ import Signup from "./pages/Signup/signup";
 import Home from "./pages/Home/home";
 import ProtectedRoute from "./ProtectedRoute";
 import {Box, Typography} from "@mui/material";
+import ProductoVista from "./pages/Producto/producto";
 export default function App() {
   return (
     <AuthProvider>
@@ -21,9 +22,8 @@ export default function App() {
                 <Navbar />
                 <main
                   style={{
-                    height: "100%",
-                    width: "100%",
                     overflowY: "hidden",
+                    marginTop: "56px",
                   }}>
                   <Home />
                 </main>
@@ -82,7 +82,21 @@ export default function App() {
               </>
             }
           />
-          <Route element={<ProtectedRoute />}></Route>
+          <Route
+            path="/producto/:idProducto"
+            element={
+              <>
+                <main
+                  style={{
+                    height: "100vh",
+                    width: "100%",
+                  }}>
+                  <ProductoVista />
+                </main>
+              </>
+            }
+          />
+          {/* <Route element={<ProtectedRoute />}></Route> */}
         </Routes>
       </BrowserRouter>
     </AuthProvider>

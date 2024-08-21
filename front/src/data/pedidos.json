@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "estado": "Pendiente",
+        "id_usuario": 1
+    },
+    {
+        "id": 2,
+        "estado": "Enviado",
+        "id_usuario": 1
+    },
+    {
+        "id": 3,
+        "estado": "Completado",
+        "id_usuario": 1
+    }
+]

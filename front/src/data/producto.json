@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "caracteristicas": "Camiseta deportiva, 100% algodón ",
+    "descripcion": "Camiseta de entrenamiento aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "precio": 19.99,
+    "stock": 50,
+    "genero": "Mujer",
+    "deporte": "Fútbol",
+    "tipo": "indumentaria",
+    "talle": "M"
+  },
+  {
+    "id": 2,
+    "caracteristicas": null,
+    "descripcion": "Zapatillas de running",
+    "precio": 79.99,
+    "stock": 0,
+    "genero": "Hombre",
+    "deporte": "Running",
+    "tipo": "calzado",
+    "talle": "42"
+  },
+  {
+    "id": 3,
+    "caracteristicas": null,
+    "descripcion": "Raqueta de tenis profesional",
+    "precio": 149.94,
+    "stock": 10,
+    "genero": "Unisex",
+    "deporte": "Tenis",
+    "tipo": "accesorio",
+    "talle": null
+  },
+  {
+    "id": 1,
+    "caracteristicas": "Camiseta deportiva, 100% algodón ",
+    "descripcion": "Camiseta de entrenamiento aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "precio": 19.99,
+    "stock": 50,
+    "genero": "Mujer",
+    "deporte": "Fútbol",
+    "tipo": "indumentaria",
+    "talle": "M"
+  },
+  {
+    "id": 2,
+    "caracteristicas": null,
+    "descripcion": "Zapatillas de running",
+    "precio": 79.99,
+    "stock": 0,
+    "genero": "Hombre",
+    "deporte": "Running",
+    "tipo": "calzado",
+    "talle": "42"
+  },
+  {
+    "id": 3,
+    "caracteristicas": null,
+    "descripcion": "Raqueta de tenis profesional",
+    "precio": 149.94,
+    "stock": 10,
+    "genero": "Unisex",
+    "deporte": "Tenis",
+    "tipo": "accesorio",
+    "talle": null
+  },
+  {
+    "id": 1,
+    "caracteristicas": "Camiseta deportiva, 100% algodón ",
+    "descripcion": "Camiseta de entrenamiento aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "precio": 19.99,
+    "stock": 50,
+    "genero": "Mujer",
+    "deporte": "Fútbol",
+    "tipo": "indumentaria",
+    "talle": "M"
+  },
+  {
+    "id": 2,
+    "caracteristicas": null,
+    "descripcion": "Zapatillas de running",
+    "precio": 79.99,
+    "stock": 0,
+    "genero": "Hombre",
+    "deporte": "Running",
+    "tipo": "calzado",
+    "talle": "42"
+  },
+  {
+    "id": 3,
+    "caracteristicas": null,
+    "descripcion": "Raqueta de tenis profesional",
+    "precio": 149.94,
+    "stock": 10,
+    "genero": "Unisex",
+    "deporte": "Tenis",
+    "tipo": "accesorio",
+    "talle": null
+  }
+]

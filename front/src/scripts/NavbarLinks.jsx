@@ -1,10 +1,11 @@
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import HowToRegRoundedIcon from "@mui/icons-material/HowToRegRounded"; /* 
 import AccountBoxRoundedIcon from "@mui/icons-material/AccountBoxRounded"; */
-import AutoAwesomeMosaicIcon from "@mui/icons-material/AutoAwesomeMosaic";
-import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
-import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ManIcon from "@mui/icons-material/Man";
+import WomanIcon from "@mui/icons-material/Woman";
+import CategoryIcon from "@mui/icons-material/Category";
+import SportsIcon from "@mui/icons-material/Sports";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 export const navLinks = [
   {
     label: "Iniciar Sesion",
@@ -19,32 +20,30 @@ export const navLinks = [
 ];
 export const navLinksAuthenticated = [
   {
-    label: "Mis Tableros",
-    href: "/tables",
-    icon: <AutoAwesomeMosaicIcon />,
+    label: "Carrito",
+    href: "/carrito",
+    icon: <ShoppingCartIcon />,
   },
-  /* 
-   {
-    label: "Profile",
-    href: "/profile",
-    icon: <AccountBoxRoundedIcon />,
-  },  */
 ];
-
-export const BoardLinks = [
+export const navLinksCategory = [
   {
-    label: "Volver",
-    href: "/tables",
-    icon: <ArrowBackIcon />,
+    label: "Unisex",
+    href: "/unisex",
+    icon: <CategoryIcon />,
   },
   {
-    label: "Nuevo Tablero",
-    href: "/boards/new",
-    icon: <AddToPhotosIcon />,
+    label: "Hombres",
+    href: "/hombres",
+    icon: <ManIcon />,
   },
   {
-    label: "Agregar Miembros",
-    href: "/:boardId/invites",
-    icon: <GroupAddOutlinedIcon />,
+    label: "Mujeres",
+    href: "/mujeres",
+    icon: <WomanIcon />,
+  },
+  {
+    label: "Deportes",
+    href: "/deportes",
+    icon: <SportsIcon />,
   },
 ];

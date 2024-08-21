@@ -7,8 +7,10 @@ config();
 export async function revisarCookie(req, res, next) {
   try {
     /* const token = req.headers.authorization.split(" ")[1]; */
-    const token = req.cookies.token_back;
-    console.log(token);
+    let token = req.cookies.token_back;
+    if (!token) {
+      token = req.headers.authorization.split(" ")[1];
+    }
     if (!token) return res.status(401).json(["Unauthorized"]);
     jwt.verify(token, process.env.SECRET_KEY, async (err, decoded) => {
       if (err) return res.status(401).json(["Unauthorized"]);
