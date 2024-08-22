@@ -6,7 +6,6 @@ export default function ProductsSection() {
   return (
     <Box
       sx={{
-        marginLeft: {xs: "0", lg: "16rem"},
         display: "flex",
         justifyContent: "center",
         overflowX: "auto",
@@ -40,16 +39,18 @@ export default function ProductsSection() {
                 cursor: "pointer",
                 "&:hover": {
                   backgroundColor: "#E0E0E0",
+                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+                  transition: "box-shadow 0.3s ease-in-out",
+                  transform: "scale(1.02)",
                 },
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-
                 color: "black",
-                padding: "1.5rem",
-
-                height: 200,
+                padding: ".5rem",
+                height: "fit-content",
                 width: 100,
+                gap: "2rem",
               }}>
               <Card producto={producto} />
             </Grid>

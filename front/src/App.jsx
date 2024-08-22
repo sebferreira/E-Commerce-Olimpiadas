@@ -1,3 +1,4 @@
+import {Typography, Box} from "@mui/material";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 //providers
 import {AuthProvider} from "./context/AuthContext";
@@ -8,8 +9,6 @@ import Signin from "./pages/Signin/signin";
 import Signup from "./pages/Signup/signup";
 import Home from "./pages/Home/home";
 import ProtectedRoute from "./ProtectedRoute";
-import {Box, Typography} from "@mui/material";
-import ProductoVista from "./pages/Producto/producto";
 export default function App() {
   return (
     <AuthProvider>
@@ -82,7 +81,7 @@ export default function App() {
               </>
             }
           />
-          <Route
+          {/*  <Route
             path="/producto/:idProducto"
             element={
               <>
@@ -95,7 +94,7 @@ export default function App() {
                 </main>
               </>
             }
-          />
+          /> */}
           {/* <Route element={<ProtectedRoute />}></Route> */}
         </Routes>
       </BrowserRouter>
