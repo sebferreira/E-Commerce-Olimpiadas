@@ -9,6 +9,7 @@ import Signin from "./pages/Signin/signin";
 import Signup from "./pages/Signup/signup";
 import Home from "./pages/Home/home";
 import ProtectedRoute from "./ProtectedRoute";
+import NavbarAuth from "./components/Navbars/navbarAuth";
 export default function App() {
   return (
     <AuthProvider>
@@ -31,7 +32,7 @@ export default function App() {
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    backgroundColor: "#172b4d",
+                    backgroundColor: "#000",
                     color: "#fff",
                     padding: "0.5rem",
                     textAlign: "center",
@@ -57,6 +58,7 @@ export default function App() {
             path="/login"
             element={
               <>
+                <NavbarAuth />
                 <main
                   style={{
                     height: "100vh",
@@ -71,6 +73,7 @@ export default function App() {
             path="/register"
             element={
               <>
+                <NavbarAuth />
                 <main
                   style={{
                     height: "100vh",

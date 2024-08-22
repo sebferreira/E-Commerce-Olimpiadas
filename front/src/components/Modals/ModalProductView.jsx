@@ -1,8 +1,13 @@
-import ViewComfyAltIcon from "@mui/icons-material/ViewComfyAlt";
-import {Button, Typography, Box} from "@mui/material";
-import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
-import CheckIcon from "@mui/icons-material/Check";
-import EventIcon from "@mui/icons-material/Event";
+import {Button, Typography, Box, TextField} from "@mui/material";
+import Dinero from "@mui/icons-material/AttachMoney";
+import ProductoNombre from "@mui/icons-material/ListAlt";
+import Deporte from "@mui/icons-material/SportsBaseball";
+import Detalles from "@mui/icons-material/Info";
+import Stock from "@mui/icons-material/Inventory";
+import Carrito from "@mui/icons-material/AddShoppingCart";
+import {useForm} from "react-hook-form";
+import {useState} from "react";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -17,8 +22,30 @@ const style = {
 };
 
 export default function ModalProductView({producto}) {
+  const {
+    handleSubmit,
+    register,
+    formState: {errors},
+  } = useForm();
+  const [errorMessage, setErrorMessage] = useState("");
+  const onSubmit = handleSubmit((data) => {
+    if (data.cantidad > producto.stock || data.cantidad <= 0) {
+      return setErrorMessage("Ingresa una cantidad acorde al stock");
+    }
+    console.log(data);
+  });
   return (
-    <Box sx={[style, {width: {xs: 250, lg: 400}, height: {xs: 500, xl: 600}}]}>
+    <Box
+      sx={[
+        style,
+        {
+          width: {xs: 250, lg: 400},
+          height: {xs: 530, xl: 700},
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        },
+      ]}>
       <Box>
         <div
           style={{
@@ -26,7 +53,7 @@ export default function ModalProductView({producto}) {
             alignItems: "center",
             marginBottom: "1rem",
           }}>
-          <ViewComfyAltIcon />
+          <ProductoNombre />
           <Typography
             id="modal-modal-title"
             variant="h6"
@@ -34,19 +61,16 @@ export default function ModalProductView({producto}) {
             sx={{
               marginLeft: "1rem",
             }}>
-            Titulo
+            Producto
           </Typography>
         </div>
         <Typography
           id="modal-modal-title"
           sx={{
-            width: "100%" /* 
-            textOverflow: "ellipsis", */,
-            whiteSpace: "nowrap",
-            overflowY: "hidden",
-            scrollbarColor: "#262626 transparent",
-            scrollbarWidth: "thin",
-            scrollbarGutter: "stable",
+            fontSize: "20px",
+            textOverflow: "ellipsis",
+            whiteSpace: "initial",
+            overflow: "hidden",
           }}>
           {producto.descripcion}
         </Typography>
@@ -56,7 +80,7 @@ export default function ModalProductView({producto}) {
             marginTop: "1rem",
             marginBottom: "1rem",
           }}>
-          <FormatAlignLeftIcon />
+          <Dinero />
           <Typography
             id="modal-modal-title"
             variant="h6"
@@ -68,14 +92,52 @@ export default function ModalProductView({producto}) {
             Precio
           </Typography>
         </div>
-        <Typography id="modal-modal-title">{producto.precio}</Typography>
+        <Typography
+          id="modal-modal-title"
+          sx={{
+            fontSize: " 18px",
+          }}>
+          ${producto.precio}
+        </Typography>
+        <Typography
+          id="modal-modal-title"
+          sx={{
+            fontSize: " 18px",
+          }}>
+          Stock:{producto.stock}
+        </Typography>
         <div
           style={{
             display: "flex",
-
+            marginTop: "1rem",
             marginBottom: "1rem",
           }}>
-          <EventIcon />
+          <Deporte />
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            sx={{
+              textAlign: "left",
+              marginLeft: "1rem",
+            }}>
+            Deporte
+          </Typography>
+        </div>
+        <Typography
+          id="modal-modal-title"
+          sx={{
+            fontSize: " 18px",
+          }}>
+          {producto.deporte}
+        </Typography>
+        <div
+          style={{
+            display: "flex",
+            marginTop: "1rem",
+            marginBottom: "1rem",
+          }}>
+          <Detalles />
           <Typography
             id="modal-modal-title"
             variant="h6"
@@ -89,27 +151,100 @@ export default function ModalProductView({producto}) {
         </div>
         <Typography id="modal-modal-title">
           {producto.caracteristicas}
+          <br />
+          Talle:{producto.talle} <br />
+          Tipo: {producto.tipo} <br />
+          Genero: {producto.genero}
+          <br />
         </Typography>
-        <div
-          style={{
+      </Box>
+      {producto.stock > 0 && (
+        <Box
+          sx={{
             display: "flex",
-            marginTop: "1rem",
-            marginBottom: "1rem",
+            flexDirection: "row",
+            justifyContent: "flex-end",
           }}>
-          <CheckIcon />
+          <form
+            style={{
+              display: "flex",
+              gap: "1rem",
+            }}
+            onSubmit={onSubmit}>
+            <TextField
+              id="standard-basic"
+              label="Cantidad"
+              size="small"
+              sx={{
+                width: {xs: "4rem", sm: "8rem"},
+              }}
+              {...register("cantidad", {required: true})}
+              type="number"
+            />
+            {errorMessage && (
+              <Typography
+                color="error"
+                variant="body2"
+                fontWeight="bold"
+                sx={{
+                  marginTop: "0.5rem",
+                }}>
+                {errorMessage}
+              </Typography>
+            )}
+            {errors.cantidad && (
+              <Typography
+                color="error"
+                variant="body2"
+                fontWeight="bold"
+                sx={{
+                  marginTop: "0.5rem",
+                }}>
+                ingrese una cantidad
+              </Typography>
+            )}
+            <Button
+              variant="contained"
+              sx={{
+                width: {xs: "4rem", sm: "8rem"},
+                height: {xs: "2rem", sm: "2.5rem"},
+                fontSize: "0.7rem",
+                padding: "5px",
+                backgroundColor: "#000",
+                color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#333",
+                },
+              }}
+              type="submit">
+              <Carrito
+                sx={{
+                  fontSize: {xs: "20px", sm: "25px"},
+                }}
+              />
+            </Button>
+          </form>
+        </Box>
+      )}
+      {!producto.stock && (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+          }}>
           <Typography
             id="modal-modal-title"
-            variant="h6"
-            component="h2"
             sx={{
-              textAlign: "left",
-              marginLeft: "1rem",
+              fontSize: " 18px",
+              color: "red",
+              marginTop: "1rem",
+              marginBottom: "1rem",
             }}>
-            Deporte
+            Producto agotado
           </Typography>
-        </div>
-        <Typography id="modal-modal-title">{producto.deporte}</Typography>
-      </Box>
+        </Box>
+      )}
     </Box>
   );
 }

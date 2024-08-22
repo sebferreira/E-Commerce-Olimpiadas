@@ -6,11 +6,21 @@ export default function NavbarAuth() {
       style={{
         position: "relative",
       }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        sx={{
+          boxShadow: "0",
+          backgroundColor: "#000",
+          color: "#fff",
+        }}>
         <Toolbar
           style={{
+            display: "flex",
+            justifyContent: "space-between",
             height: "3rem",
             minHeight: "3.5rem",
+            backgroundColor: "#000",
+            color: "#fff",
           }}>
           <Typography
             variant="h6"
@@ -21,6 +31,7 @@ export default function NavbarAuth() {
                 textDecoration: "none",
                 color: "#FFFFFF",
                 fontWeight: "bold",
+                marginLeft: "1rem",
               }}>
               E-commerce
             </Link>

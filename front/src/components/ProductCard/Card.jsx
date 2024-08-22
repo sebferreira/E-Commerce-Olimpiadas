@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Button, Divider, Modal, Typography, Box} from "@mui/material";
 import {Link} from "react-router-dom";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import Carrito from "@mui/icons-material/AddShoppingCart";
 import ModalProductView from "../Modals/ModalProductView";
 
 export default function Card({producto}) {
@@ -30,18 +30,28 @@ export default function Card({producto}) {
           }}>
           <Typography
             sx={{
-              fontSize: {xs: "11px", sm: "16px"},
+              fontSize: {xs: "13px", sm: "17px"},
               fontWeight: "bold",
-              color: "#333",
+              color: "#000",
               padding: "10px",
               textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
+              whiteSpace: "initial",
               overflow: "hidden",
+              height: "98px",
             }}>
-            {producto.descripcion} <br />
-            {producto.deporte}
+            {producto.descripcion}
             <br />
+            <Typography
+              sx={{
+                fontSize: {xs: "13px", sm: "17px"},
+                marginTop: "1rem",
+                color: "#000",
+              }}>
+              {producto.deporte}
+              <br />
+            </Typography>
           </Typography>
+
           <Typography
             component={Box}
             sx={{
@@ -54,8 +64,8 @@ export default function Card({producto}) {
             }}>
             {producto.genero}
           </Typography>
+          {/* <Divider /> */}
         </Box>
-        <Divider />
         <Box>
           <Typography
             sx={{
@@ -73,26 +83,43 @@ export default function Card({producto}) {
         sx={{
           display: "flex",
           justifyContent: "center",
-          gap: "1rem",
         }}>
-        <Button
-          variant="contained"
-          sx={{
-            width: {xs: "4rem", sm: "8rem"},
-            height: {xs: "2rem", sm: "2.5rem"},
-            fontSize: "0.7rem",
-            padding: "5px",
-            backgroundColor: "#172b4d",
-            color: "#fff",
-            "&:hover": {
-              backgroundColor: "#004986",
-            },
-          }}
-          onClick={() => {
-            console.log("click");
-          }}>
-          <AddShoppingCartIcon />
-        </Button>
+        {producto.stock > 0 && (
+          <Button
+            variant="contained"
+            sx={{
+              width: {xs: "4rem", sm: "8rem"},
+              height: {xs: "2rem", sm: "2.5rem"},
+              fontSize: "0.7rem",
+              padding: "5px",
+              backgroundColor: "#000",
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: "#333",
+              },
+            }}
+            onClick={() => {
+              console.log("click");
+            }}>
+            <Carrito
+              sx={{
+                fontSize: {xs: "20px", sm: "25px"},
+              }}
+            />
+          </Button>
+        )}
+        {!producto.stock && (
+          <Typography
+            sx={{
+              fontSize: {xs: "11px", sm: "16px"},
+              fontWeight: "bold",
+              padding: "10px",
+              borderRadius: 2,
+              color: "red",
+            }}>
+            Sin Stock
+          </Typography>
+        )}
       </Box>
       <Modal
         open={openModalView}

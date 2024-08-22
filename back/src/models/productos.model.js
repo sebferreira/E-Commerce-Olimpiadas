@@ -9,35 +9,28 @@ const Producto = sequelize.define("Productos", {
   },
   caracteristicas: {
     type: DataTypes.STRING,
-    allowNull: true,
   },
   descripcion: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   deporte: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   tipo: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   genero: {
     type: DataTypes.STRING,
-    allowNull: true,
+    defaultValue: "unisex",
   },
   talle: {
     type: DataTypes.STRING,
-    allowNull: true,
   },
   precio: {
     type: DataTypes.INTEGER,
-    allowNull: false,
   },
   stock: {
     type: DataTypes.INTEGER,
-    allowNull: false,
     defaultValue: 0,
   },
 });

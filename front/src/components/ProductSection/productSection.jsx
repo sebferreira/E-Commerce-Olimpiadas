@@ -17,9 +17,9 @@ export default function ProductsSection() {
         container
         sx={{
           gap: "1.5rem",
-          padding: "2rem",
+          padding: {xs: "1rem", sm: "2rem"},
           display: "flex",
-          justifyContent: {xs: "center", xl: "flex-start"},
+          justifyContent: "center",
           flexDirection: "row",
           flexWrap: "wrap",
         }}>
@@ -45,12 +45,11 @@ export default function ProductsSection() {
                 },
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "space-between",
+                justifyContent: {xs: "space-evenly", sm: "space-between"},
                 color: "black",
                 padding: ".5rem",
-                height: "fit-content",
-                width: 100,
-                gap: "2rem",
+                height: {xs: "250px", sm: "320px"},
+                width: {xs: "200px", sm: "100"},
               }}>
               <Card producto={producto} />
             </Grid>

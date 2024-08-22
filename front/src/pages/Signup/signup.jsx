@@ -39,7 +39,8 @@ export default function Signup() {
       <Card
         sx={{
           mt: "3rem",
-          width: {xs: "15rem", md: "15rem", lg: "25rem"},
+          ml: "1rem",
+          width: {xs: "20rem", md: "15rem", lg: "30rem"},
           backgroundColor: "#FFFFFF",
           borderRadius: 12,
           boxShadow: "0 4px 10px rgba(0, 0, 0, 0.5)",
@@ -106,7 +107,7 @@ export default function Signup() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Nombre es necesario
+                el Nombre es necesario
               </Typography>
             )}
             <Typography
@@ -138,7 +139,7 @@ export default function Signup() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Apellido es necesario
+                el Apellido es necesario
               </Typography>
             )}
             <Typography
@@ -170,7 +171,7 @@ export default function Signup() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                el dni es necesario
+                el DNI es necesario
               </Typography>
             )}
 
@@ -203,7 +204,7 @@ export default function Signup() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Telefono es necesario
+                el Telefono es necesario
               </Typography>
             )}
             <Typography
@@ -235,7 +236,7 @@ export default function Signup() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Email es necesario
+                el Email es necesario
               </Typography>
             )}
             <Typography
@@ -267,7 +268,7 @@ export default function Signup() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Contraseña es necesario
+                la Contraseña es necesaria
               </Typography>
             )}
             <Typography
@@ -299,7 +300,7 @@ export default function Signup() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Confirmar Contraseña es necesario
+                es necesario Confirmar la Contraseña
               </Typography>
             )}
 
@@ -309,7 +310,7 @@ export default function Signup() {
               style={{
                 marginTop: "1rem",
                 width: "100%",
-                backgroundColor: "#172b4d",
+                backgroundColor: "#000",
                 borderRadius: 12,
                 fontSize: "16px",
                 fontWeight: "bold",

@@ -31,6 +31,10 @@ export default function Navbar() {
         position="fixed"
         sx={{
           boxShadow: "0",
+          backgroundColor: "#000",
+          color: "#fff",
+          transition: "box-shadow 0.3s ease-in-out",
+          transform: "scale(1.02)",
         }}>
         <Toolbar
           style={{
@@ -38,8 +42,8 @@ export default function Navbar() {
             justifyContent: "space-between",
             height: "3rem",
             minHeight: "3.5rem",
-            backgroundColor: "#172b4d",
-            color: "#FFFF",
+            backgroundColor: "#000",
+            color: "#fff",
           }}>
           <IconButton
             color="inherit"
@@ -59,24 +63,23 @@ export default function Navbar() {
                 textDecoration: "none",
                 color: "#FFFF",
                 fontWeight: "bold",
+                marginLeft: "1rem",
               }}>
               E-Commerce
             </Link>
           </Typography>
           <div>
-            {isAuthenticated && (
-              <Box
-                sx={{
-                  display: {xs: "none", md: "flex"},
-                  gap: "1rem",
-                  height: "100%",
-                  alignItems: "center",
-                }}>
-                {navLinksCategory.map((item) => {
-                  return buttonsDesktopHome(item, "#172b4d", "#FFF");
-                })}
-              </Box>
-            )}
+            <Box
+              sx={{
+                display: {xs: "none", md: "flex"},
+                gap: "1rem",
+                height: "100%",
+                alignItems: "center",
+              }}>
+              {navLinksCategory.map((item) => {
+                return buttonsDesktopHome(item, "#000", "#FFFF");
+              })}
+            </Box>
           </div>
           <div
             style={{
@@ -112,9 +115,9 @@ export default function Navbar() {
               {!isAuthenticated &&
                 navLinks.map((item) => {
                   if (item.label === "Iniciar Sesion") {
-                    return buttonsDesktopHome(item, "#172b4d", "#FFF");
+                    return buttonsDesktopHome(item, "#FFF", "#000");
                   }
-                  return buttonsDesktopHome(item, "#FFFF", "#172b4d");
+                  return buttonsDesktopHome(item, "#000", "#FFF");
                 })}
             </Box>
             {user && <Profile user={user} />}

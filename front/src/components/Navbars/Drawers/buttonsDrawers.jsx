@@ -25,6 +25,7 @@ export const buttonsDesktopHome = (item, bgColor, fontColor) => {
       key={item.label}
       style={{
         backgroundColor: bgColor,
+
         borderRadius: 0,
         fontSize: "16px",
         fontWeight: "bold",
@@ -40,8 +41,8 @@ export const buttonsDesktopHome = (item, bgColor, fontColor) => {
       <Typography
         style={{
           color: fontColor,
-          fontWeight: "bold",
-          fontSize: "1.1rem",
+          fontSize: "1.2rem" /* 
+          fontWeight: "bold", */,
         }}>
         {item.label}
       </Typography>

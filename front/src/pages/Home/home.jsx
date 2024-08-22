@@ -22,18 +22,6 @@ export default function Home() {
             sx={{
               width: {xs: "100%", md: "100%"},
             }}>
-            {/* 
-            <Typography
-              component="p"
-              variant="h3"
-              sx={{
-                fontWeight: "bold",
-                marginBottom: {xs: "1rem", sm: "2rem"},
-              }}
-              fontSize={{xs: "1.5rem", sm: "3rem", lg: "3rem", xl: "4rem"}}
-              color={"#1c1a42"}>
-              Compra aquí, compra bien.
-            </Typography> */}
             <Carrousel />
           </Box>
           <Box

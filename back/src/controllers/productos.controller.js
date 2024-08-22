@@ -68,3 +68,112 @@ export const obtenerProductoPorGenero = async (req, res) => {
     res.status(500).json(["Server error"]);
   }
 };
+
+export const crearProducto = async (req, res) => {
+  try {
+    const user = req.user;
+
+    if (user.rol != "admin") {
+      return res.status(401).json(["Unauthorized"]);
+    }
+
+    const {
+      caracteristicas,
+      descripcion,
+      deporte,
+      tipo,
+      genero,
+      talle,
+      precio,
+      stock,
+    } = req.body;
+
+    const nuevoProducto = await Producto.create({
+      caracteristicas,
+      descripcion,
+      deporte,
+      tipo,
+      genero,
+      talle,
+      precio,
+      stock,
+    });
+
+    const productoGuardado = await nuevoProducto.save();
+
+    res.status(200).json(productoGuardado);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(["Server error"]);
+  }
+};
+
+export const actualizarProducto = async (req, res) => {
+  try {
+    const user = req.user;
+
+    if (user.rol != "admin") {
+      return res.status(401).json(["Unauthorized"]);
+    }
+
+    const {id} = req.params;
+
+    const producto = await Producto.findByPk(id);
+    if (!producto) {
+      return res.status(404).json(["El producto buscado no existe"]);
+    }
+
+    const {
+      caracteristicas,
+      descripcion,
+      deporte,
+      tipo,
+      genero,
+      talle,
+      precio,
+      stock,
+    } = req.body;
+
+    await producto.update({
+      caracteristicas,
+      descripcion,
+      deporte,
+      tipo,
+      genero,
+      talle,
+      precio,
+      stock,
+    });
+
+    res.status(200).json(producto);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(["Server error"]);
+  }
+};
+
+export const borrarProducto = async (req, res) => {
+  try {
+    const user = req.user;
+
+    if (user.rol != "admin") {
+      return res.status(401).json(["Unauthorized"]);
+    }
+
+    const {id} = req.params;
+
+    const producto = await Producto.findByPk(id);
+    if (!producto) {
+      return res.status(404).json(["El producto buscado no existe"]);
+    }
+
+    const productoEliminado = producto;
+
+    await producto.destroy();
+
+    res.status(200).json(productoEliminado);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(["Server error"]);
+  }
+};

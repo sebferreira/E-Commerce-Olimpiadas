@@ -34,7 +34,7 @@ export default function Signin() {
       justifyContent="center"
       alignItems="center"
       direction="column"
-      spacing={2}>
+      spacing={1}>
       <Card
         sx={{
           mt: {xs: "3rem", md: "5rem", xl: "10rem"},
@@ -105,7 +105,7 @@ export default function Signin() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Email is required
+                el Email es necesario
               </Typography>
             )}
 
@@ -138,7 +138,7 @@ export default function Signin() {
                 sx={{
                   marginTop: "0.5rem",
                 }}>
-                Password is required
+                la contraseña es necesaria
               </Typography>
             )}
             <Button
@@ -147,7 +147,7 @@ export default function Signin() {
               style={{
                 marginTop: "1rem",
                 width: "100%",
-                backgroundColor: "#172b4d",
+                backgroundColor: "#000",
                 borderRadius: 12,
                 fontSize: "16px",
                 fontWeight: "bold",

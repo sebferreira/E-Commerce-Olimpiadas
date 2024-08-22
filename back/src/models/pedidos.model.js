@@ -12,7 +12,6 @@ const Pedido = sequelize.define(
     },
     estado: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
   },
   {

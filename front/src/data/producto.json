@@ -97,5 +97,16 @@
     "deporte": "Tenis",
     "tipo": "accesorio",
     "talle": null
+  },
+  {
+    "id": 3,
+    "caracteristicas": null,
+    "descripcion": "Raqueta de tenis profesional",
+    "precio": 149.94,
+    "stock": 10,
+    "genero": "Unisex",
+    "deporte": "Tenis",
+    "tipo": "accesorio",
+    "talle": null
   }
 ]
