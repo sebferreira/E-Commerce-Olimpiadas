@@ -19,6 +19,7 @@ import {Link} from "react-router-dom";
 import {useAuth} from "../../context/AuthContext";
 import Profile from "../Menu/profile";
 import {buttonsDesktopHome} from "./Drawers/buttonsDrawers";
+import zorro from "../../assets/zorrologo1.png";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -31,8 +32,8 @@ export default function Navbar() {
         position="fixed"
         sx={{
           boxShadow: "0",
-          backgroundColor: "#000",
-          color: "#fff",
+          backgroundColor: "#fff",
+          color: "#000",
           transition: "box-shadow 0.3s ease-in-out",
           transform: "scale(1.02)",
         }}>
@@ -40,10 +41,10 @@ export default function Navbar() {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            height: "3rem",
+            height: "4rem",
             minHeight: "3.5rem",
-            backgroundColor: "#000",
-            color: "#fff",
+            backgroundColor: "#fff",
+            color: "#000",
           }}>
           <IconButton
             color="inherit"
@@ -56,13 +57,15 @@ export default function Navbar() {
           </IconButton>
           <Typography
             variant="h6"
-            sx={{fontSize: {xs: "1.25rem", xl: "1.5rem"}}}>
+            sx={{
+              fontSize: {xs: "1.25rem", xl: "1.5rem"},
+              fontWeight: "normal",
+            }}>
             <Link
               to="/"
               style={{
                 textDecoration: "none",
-                color: "#FFFF",
-                fontWeight: "bold",
+                color: "#000",
                 marginLeft: "1rem",
               }}>
               E-Commerce
@@ -77,7 +80,7 @@ export default function Navbar() {
                 alignItems: "center",
               }}>
               {navLinksCategory.map((item) => {
-                return buttonsDesktopHome(item, "#000", "#FFFF");
+                return buttonsDesktopHome(item, "#FFFF", "#000");
               })}
             </Box>
           </div>
@@ -115,9 +118,9 @@ export default function Navbar() {
               {!isAuthenticated &&
                 navLinks.map((item) => {
                   if (item.label === "Iniciar Sesion") {
-                    return buttonsDesktopHome(item, "#FFF", "#000");
+                    return buttonsDesktopHome(item, "#000", "#FFF");
                   }
-                  return buttonsDesktopHome(item, "#000", "#FFF");
+                  return buttonsDesktopHome(item, "#ffF", "#000");
                 })}
             </Box>
             {user && <Profile user={user} />}
