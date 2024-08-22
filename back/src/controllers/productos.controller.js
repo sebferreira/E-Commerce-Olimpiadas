@@ -37,9 +37,7 @@ export const obtenerProductoPorDeporte = async (req, res) => {
     const productos = await Producto.findAll({where: {deporte: deporte}});
 
     if (productos.length <= 0) {
-      return res
-        .status(404)
-        .json(["No se encontraron productos para el deporte especificado"]);
+      return res.status(404).json(["No se encontraron productos para el deporte especificado"]);
     }
 
     res.status(200).json(productos);
@@ -63,6 +61,32 @@ export const obtenerProductoPorGenero = async (req, res) => {
     }
 
     res.status(200).json(productos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(["Server error"]);
+  }
+};
+
+export const crearProducto = async (req, res) => {
+  try {
+    const {caracteristicas, descripcion, deporte, 
+      tipo, genero, talle, precio, stock
+    } = req.params;
+
+    const nuevoProducto = await Producto.create({
+      caracteristicas, 
+      descripcion, 
+      deporte, 
+      tipo, 
+      genero, 
+      talle, 
+      precio, 
+      stock
+    });
+
+    const productoGuardado = await nuevoProducto.save();
+
+    res.status(200).json(productoGuardado);
   } catch (error) {
     console.error(error);
     res.status(500).json(["Server error"]);

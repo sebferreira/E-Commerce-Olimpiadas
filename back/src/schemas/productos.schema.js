@@ -1,7 +1,10 @@
 import {z} from "zod";
 
-export const productosSchema = z.object({
-  caracteristicas: z
+ const productosSchema = z.object({
+  caracteristicas: z.string({
+    required_error: "Caracteristicas es requerido",
+
+  })
     .min(10, {
       message: "Caracteristicas debe tener al menos 10 caracteres",
     })
@@ -71,3 +74,4 @@ export const productosSchema = z.object({
     invalid_type_error: "Stock debe ser un numero",
   }),
 });
+export default productosSchema;

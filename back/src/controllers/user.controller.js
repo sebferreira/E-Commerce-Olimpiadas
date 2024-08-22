@@ -76,18 +76,27 @@ export const profileUser = (req, res) => {
 };
 
 export const verifyToken = async (req, res) => {
-  let token = req.cookies.token_back;
+  const token = req.cookies.token_back;
   if (!token) {
     token = req.headers.authorization.split(" ")[1];
   }
   if (!token) return res.status(401).json(["Unauthorized"]);
   jwt.verify(token, process.env.SECRET_KEY, async (err, user) => {
     if (err) return res.status(401).json(["Unauthorized"]);
+    console.log(user.email);
     const email = user.email;
     const userFound = await User.findOne({where: {email}});
     if (!userFound) return res.status(401).json(["Unauthorized"]);
     console.log(userFound._previousDataValues);
 
     return res.json(userFound._previousDataValues);
+  });
+};
+
+export const getPedidos = async (req, res) => {
+  const user = req.user;
+  return res.json({
+    message: "pedido del usuario",
+    user: user,
   });
 };
