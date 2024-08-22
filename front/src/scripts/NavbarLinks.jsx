@@ -28,17 +28,17 @@ export const navLinksAuthenticated = [
 export const navLinksCategory = [
   {
     label: "Unisex",
-    href: "/unisex",
+    href: "/productos/Unisex",
     icon: <CategoryIcon />,
   },
   {
     label: "Hombres",
-    href: "/hombres",
+    href: "/productos/Hombre",
     icon: <ManIcon />,
   },
   {
     label: "Mujeres",
-    href: "/mujeres",
+    href: "/productos/Mujer",
     icon: <WomanIcon />,
   },
   {

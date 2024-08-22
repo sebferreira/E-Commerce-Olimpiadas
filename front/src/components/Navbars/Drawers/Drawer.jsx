@@ -18,16 +18,15 @@ export default function NavDrawer() {
               navLinksAuthenticated.map((item) => {
                 return buttonsMobileDrawerHome(item);
               })}
-            <Divider />
-            {isAuthenticated &&
-              navLinksCategory.map((item) => {
-                return buttonsMobileDrawerHome(item);
-              })}
 
             {!isAuthenticated &&
               navLinks.map((item) => {
                 return buttonsMobileDrawerHome(item);
               })}
+            <Divider />
+            {navLinksCategory.map((item) => {
+              return buttonsMobileDrawerHome(item);
+            })}
           </List>
         </nav>
       </Box>

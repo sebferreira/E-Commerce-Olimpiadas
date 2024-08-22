@@ -1,12 +1,9 @@
 import {Box, Grid} from "@mui/material";
 import productos from "../../data/producto.json";
 import Card from "../ProductCard/Card";
-import {useParams} from "react-router-dom";
+import {deportes} from "../../data/deportes";
 
-export default function ProductsSection() {
-  const params = useParams();
-  //conseguir el genero
-  //params-
+export default function SportsSection() {
   return (
     <Box
       sx={{
@@ -27,7 +24,7 @@ export default function ProductsSection() {
           flexDirection: "row",
           flexWrap: "wrap",
         }}>
-        {productos.map((producto) => {
+        {deportes.map((producto) => {
           return (
             <Grid
               item

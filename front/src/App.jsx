@@ -10,6 +10,10 @@ import Signup from "./pages/Signup/signup";
 import Home from "./pages/Home/home";
 import ProtectedRoute from "./ProtectedRoute";
 import NavbarAuth from "./components/Navbars/navbarAuth";
+import FilterPageByGender from "./pages/FilterPageByGender/filterPageByGender";
+import DeportesController from "./pages/Sports/sports";
+import FilterPageBySport from "./pages/FilterPageBySport/filterPageBySport";
+
 export default function App() {
   return (
     <AuthProvider>
@@ -80,6 +84,51 @@ export default function App() {
                     width: "100%",
                   }}>
                   <Signup />
+                </main>
+              </>
+            }
+          />
+          <Route
+            path="/productos/:genero"
+            element={
+              <>
+                <Navbar />
+                <main
+                  style={{
+                    overflowY: "hidden",
+                    marginTop: "5rem",
+                  }}>
+                  <FilterPageByGender />
+                </main>
+              </>
+            }
+          />
+          <Route
+            path="/deportes"
+            element={
+              <>
+                <Navbar />
+                <main
+                  style={{
+                    overflowY: "hidden",
+                    marginTop: "5rem",
+                  }}>
+                  <DeportesController />
+                </main>
+              </>
+            }
+          />
+          <Route
+            path="/productos/deportes/:deporte"
+            element={
+              <>
+                <Navbar />
+                <main
+                  style={{
+                    overflowY: "hidden",
+                    marginTop: "5rem",
+                  }}>
+                  <FilterPageBySport />
                 </main>
               </>
             }

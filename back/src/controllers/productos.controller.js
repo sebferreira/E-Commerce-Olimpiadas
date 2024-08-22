@@ -37,7 +37,9 @@ export const obtenerProductoPorDeporte = async (req, res) => {
     const productos = await Producto.findAll({where: {deporte: deporte}});
 
     if (productos.length <= 0) {
-      return res.status(404).json(["No se encontraron productos para el deporte especificado"]);
+      return res
+        .status(404)
+        .json(["No se encontraron productos para el deporte especificado"]);
     }
 
     res.status(200).json(productos);
@@ -69,7 +71,6 @@ export const obtenerProductoPorGenero = async (req, res) => {
 
 export const crearProducto = async (req, res) => {
   try {
-<<<<<<< HEAD
     const user = req.user;
 
     if (user.rol != "admin") {
@@ -96,21 +97,6 @@ export const crearProducto = async (req, res) => {
       talle,
       precio,
       stock,
-=======
-    const {caracteristicas, descripcion, deporte, 
-      tipo, genero, talle, precio, stock
-    } = req.params;
-
-    const nuevoProducto = await Producto.create({
-      caracteristicas, 
-      descripcion, 
-      deporte, 
-      tipo, 
-      genero, 
-      talle, 
-      precio, 
-      stock
->>>>>>> 43d570266588eb9e9c7fcaffd1589d6016ff7d13
     });
 
     const productoGuardado = await nuevoProducto.save();
@@ -120,7 +106,6 @@ export const crearProducto = async (req, res) => {
     console.error(error);
     res.status(500).json(["Server error"]);
   }
-<<<<<<< HEAD
 };
 
 export const actualizarProducto = async (req, res) => {
@@ -192,6 +177,3 @@ export const borrarProducto = async (req, res) => {
     res.status(500).json(["Server error"]);
   }
 };
-=======
-};
->>>>>>> 43d570266588eb9e9c7fcaffd1589d6016ff7d13
