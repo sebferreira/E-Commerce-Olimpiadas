@@ -10,6 +10,7 @@ import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {useAuth} from "../../context/AuthContext";
 import {useEffect} from "react";
+import {actualizarByMetodoPago, insertarMetodoPago} from "../../queryFn";
 
 export default function Pagos() {
   const {
@@ -22,8 +23,12 @@ export default function Pagos() {
 
   const onSubmit = handleSubmit(async (data) => {
     data.cod_tarjeta = Number(data.cod_tarjeta);
-    data.num_tarjeta = Number(data.num_tarjeta);
-    /* signin(data); */
+    const pago = await insertarMetodoPago(data, user.id_usuario);
+    if (pago) {
+      const pedido = await actualizarByMetodoPago(user.id_usuario);
+
+      if (pedido) return navigate("/productos/carrito");
+    }
   });
   /*
    useEffect(() => {
@@ -146,7 +151,7 @@ export default function Pagos() {
                 display: "block",
                 marginBottom: "1rem",
               }}
-              type="number"
+              type="text"
               fontWeight="bold"
               {...register("f_vencimiento", {required: true})}
               size="small"

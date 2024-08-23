@@ -3,12 +3,16 @@ import sequelize from "../config/db.js";
 import Usuario from "./users.model.js";
 
 const MetodoPago = sequelize.define("Metodos_de_pago", {
-  cod_tarjeta: {
+  id_MetodoPago: {
     type: DataTypes.INTEGER,
+    autoIncrement: true,
     primaryKey: true,
   },
-  num_tarjeta: {
+  cod_tarjeta: {
     type: DataTypes.INTEGER,
+  },
+  num_tarjeta: {
+    type: DataTypes.STRING,
   },
   f_vencimiento: {
     type: DataTypes.STRING,

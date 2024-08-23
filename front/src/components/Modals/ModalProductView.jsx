@@ -3,12 +3,11 @@ import Dinero from "@mui/icons-material/AttachMoney";
 import ProductoNombre from "@mui/icons-material/ListAlt";
 import Deporte from "@mui/icons-material/SportsBaseball";
 import Detalles from "@mui/icons-material/Info";
-import Stock from "@mui/icons-material/Inventory";
 import Carrito from "@mui/icons-material/AddShoppingCart";
 import {useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
-import ActualizarProducto from "./ModalUpdateProduct";
 import {useAuth} from "../../context/AuthContext";
+import {insertarPedido} from "../../queryFn";
 
 const style = {
   position: "absolute",
@@ -31,26 +30,32 @@ export default function ModalProductView({producto}) {
   } = useForm();
   const {user} = useAuth();
   const [errorMessage, setErrorMessage] = useState("");
-  const onSubmit = handleSubmit((data) => {
+  const [message, setMessage] = useState("");
+  const onSubmit = handleSubmit(async (data) => {
+    data.cantidad = Number(data.cantidad);
     if (data.cantidad > producto.stock || data.cantidad <= 0) {
       return setErrorMessage("Ingresa una cantidad acorde al stock");
     }
-    console.log(data);
+    data.id_producto = producto.id_producto;
+    const pedido = await insertarPedido(data, user.id_usuario);
+    if (pedido) {
+      setMessage("Pedido realizado con éxito");
+    }
   });
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setErrorMessage("");
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [setErrorMessage]);
-  const usuario = user ? user : null;
-  {
-    /* <>
-    {usuario && usuario.rol === "admin" && (
-      <ActualizarProducto producto={producto} />
-    )}
-    {usuario && usuario.rol != "admin" && ( */
-  }
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+    if (message) {
+      const timer2 = setTimeout(() => {
+        setMessage("");
+      }, 3000);
+      return () => clearTimeout(timer2);
+    }
+  }, [errorMessage, message]);
   return (
     <Box
       sx={[
@@ -200,6 +205,17 @@ export default function ModalProductView({producto}) {
                   marginTop: "0.5rem",
                 }}>
                 {errorMessage}
+              </Typography>
+            )}
+            {message && (
+              <Typography
+                variant="body2"
+                fontWeight="bold"
+                sx={{
+                  marginTop: "0.5rem",
+                  color: "green",
+                }}>
+                {message}
               </Typography>
             )}
             {errors.cantidad && (

@@ -11,6 +11,7 @@ const PedidosProductos = sequelize.define("Pedidos de Productos", {
   },
   cantidad: {
     type: DataTypes.INTEGER,
+    defaultValue: 1,
   },
   id_pedido: {
     type: DataTypes.INTEGER,

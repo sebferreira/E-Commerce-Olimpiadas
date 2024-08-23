@@ -1,10 +1,10 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Button, Modal, Typography, Box} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import Carrito from "@mui/icons-material/AddShoppingCart";
 import ModalProductView from "../Modals/ModalProductView";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {borrarProductos} from "../../queryFn";
+import {borrarProductos, insertarPedido} from "../../queryFn";
 import {useAuth} from "../../context/AuthContext";
 import ActualizarProducto from "../Modals/ModalUpdateProduct";
 
@@ -12,6 +12,7 @@ export default function Card({producto}) {
   const {user, isAdmin} = useAuth();
   const [openModalView, setOpenModalView] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [message, setMessage] = useState("");
   const handleOpenModalView = () => setOpenModalView(true);
   const handleCloseModalView = () => setOpenModalView(false);
   const handleClose = () => {
@@ -38,6 +39,22 @@ export default function Card({producto}) {
       else return <ModalProductView producto={producto} />;
     } else return <ModalProductView producto={producto} />;
   };
+  const handleCarrito = async () => {
+    const body = {
+      cantidad: 1,
+      id_producto: producto.id_producto,
+    };
+    const pedido = await insertarPedido(body, user.id_usuario);
+    setMessage("Pediste este producto");
+  };
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        setMessage("");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  });
   return (
     <>
       <Box onClick={(() => handleClose, handleOpenModalView)}>
@@ -100,66 +117,82 @@ export default function Card({producto}) {
       <Box
         sx={{
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
+          alignItems: "center",
           gap: "1rem",
         }}>
-        {user && user.rol === "admin" && (
-          <Button
-            variant="contained"
-            sx={{
-              minWidth: "2rem",
-              width: {xs: "2rem", sm: "4rem"},
-              height: {xs: "2rem", sm: "2.5rem"},
-              padding: "5px",
-              backgroundColor: "#D32F2F",
-              "&:hover": {
-                backgroundColor: "#a32F2F",
-              },
-            }}
-            onClick={handleDelete}>
-            <DeleteIcon
-              sx={{
-                color: "#FFF",
-              }}
-            />
-          </Button>
-        )}
-        {producto.stock > 0 && (
-          <Button
-            variant="contained"
-            sx={{
-              width: {xs: "4rem", sm: "8rem"},
-              height: {xs: "2rem", sm: "2.5rem"},
-              fontSize: "0.7rem",
-              padding: "5px",
-              backgroundColor: "#000",
-              color: "#fff",
-              "&:hover": {
-                backgroundColor: "#333",
-              },
-            }}
-            onClick={() => {
-              console.log("click");
-            }}>
-            <Carrito
-              sx={{
-                fontSize: {xs: "20px", sm: "25px"},
-              }}
-            />
-          </Button>
-        )}
-        {!producto.stock && (
+        {message && (
           <Typography
             sx={{
-              fontSize: {xs: "11px", sm: "16px"},
-              fontWeight: "bold",
-              padding: "10px",
-              borderRadius: 2,
-              color: "red",
+              fontSize: "12px",
+              color: "green",
+              marginTop: "1rem",
             }}>
-            Sin Stock
+            {message}
           </Typography>
         )}
+        <Box
+          sx={{
+            display: "flex",
+            gap: "0.5rem",
+          }}>
+          {user && user.rol === "admin" && (
+            <Button
+              variant="contained"
+              sx={{
+                minWidth: "2rem",
+                width: {xs: "2rem", sm: "4rem"},
+                height: {xs: "2rem", sm: "2.5rem"},
+                padding: "5px",
+                backgroundColor: "#D32F2F",
+                "&:hover": {
+                  backgroundColor: "#a32F2F",
+                },
+              }}
+              onClick={handleDelete}>
+              <DeleteIcon
+                sx={{
+                  color: "#FFF",
+                }}
+              />
+            </Button>
+          )}
+          {producto.stock > 0 && (
+            <Button
+              variant="contained"
+              sx={{
+                width: {xs: "4rem", sm: "4rem"},
+                height: {xs: "2rem", sm: "2.5rem"},
+                fontSize: "0.7rem",
+                padding: "5px",
+                backgroundColor: "#000",
+                color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#333",
+                },
+              }}
+              onClick={handleCarrito}>
+              <Carrito
+                sx={{
+                  fontSize: {xs: "20px", sm: "25px"},
+                }}
+              />
+            </Button>
+          )}
+          {!producto.stock && (
+            <Typography
+              sx={{
+                fontSize: {xs: "11px", sm: "16px"},
+                fontWeight: "bold",
+                padding: "10px",
+                borderRadius: 2,
+                color: "red",
+              }}>
+              Sin Stock
+            </Typography>
+          )}
+        </Box>
       </Box>
       <Modal
         open={openModalView}

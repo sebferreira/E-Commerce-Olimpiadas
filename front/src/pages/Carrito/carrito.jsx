@@ -1,9 +1,12 @@
 import {Box, Container, Typography} from "@mui/material";
 import {useParams} from "react-router-dom";
 import CarritoSection from "../../components/ProductSection/carritoSection";
+import {useAuth} from "../../context/AuthContext";
+import CarritoSectionAdmin from "../../components/ProductSection/carritoSectionAdmin";
 
 export default function Carrito() {
   const params = useParams();
+  const {user} = useAuth();
   return (
     <>
       <Container
@@ -35,9 +38,11 @@ export default function Carrito() {
                 marginBottom: "1rem",
                 height: "fit-content",
               }}>
-              Tú carrito de compras
+              {user && user.rol === "admin" && "El carrito de compras"}
+              {user && user.rol === "user" && "Tú carrito de compras"}
             </Typography>
-            <CarritoSection />
+            {user && user.rol === "admin" && <CarritoSectionAdmin />}
+            {user && user.rol === "user" && <CarritoSection />}
           </Box>
         </Box>
       </Container>

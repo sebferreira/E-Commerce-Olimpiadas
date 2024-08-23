@@ -1,26 +1,22 @@
 import {Box, Button, Grid, Typography} from "@mui/material";
 import Card from "../ProductCard/Card";
 import {useEffect, useState} from "react";
-import {pedidosDelUsuario} from "../../queryFn";
+import {obtenerTodosPedidosAdmin} from "../../queryFn";
 import {useAuth} from "../../context/AuthContext";
 import CardCarrito from "../ProductCard/CardCarrito";
-import {useNavigate} from "react-router-dom";
 
-export default function CarritoSection() {
+export default function CarritoSectionAdmin() {
   const [pedidos, setPedidos] = useState([]);
   const {user} = useAuth();
-  const navigate = useNavigate();
   const ConseguirProductos = async () => {
-    if (user) {
-      const pedido = await pedidosDelUsuario(user.id_usuario);
-      setPedidos(pedido);
-      console.log(pedido);
-    }
+    const pedido = await obtenerTodosPedidosAdmin();
+    console.log(pedidos);
+    setPedidos(pedido);
   };
 
   useEffect(() => {
     ConseguirProductos();
-  }, [user]);
+  }, []);
 
   return (
     <Box
@@ -34,7 +30,7 @@ export default function CarritoSection() {
         scrollbarWidth: "thin",
         scrollbarGutter: "stable",
       }}>
-      <Grid
+      {/* <Grid
         container
         sx={{
           gap: "1.5rem",
@@ -89,15 +85,15 @@ export default function CarritoSection() {
               marginBottom: "2rem",
               padding: "1rem",
             }}>
-            No hay productos en tu carrito aún.
-            <br /> agrega uno e intenta más tarde.
+            No hay productos en el carrito aún.
+            <br /> espera a que agreguen uno.
           </Typography>
         )}
       </Grid>
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           marginTop: "2rem",
           marginBottom: "2rem",
         }}>
@@ -107,7 +103,6 @@ export default function CarritoSection() {
             textAlign: "center",
             marginTop: "2rem",
             fontSize: {xs: "1.2rem", md: "1.5rem"},
-            height: "fit-content",
           }}>
           Total:
         </Typography>
@@ -116,6 +111,7 @@ export default function CarritoSection() {
           color="primary"
           sx={{
             marginTop: "2rem",
+            marginLeft: "1rem",
             marginBottom: "1rem",
             width: "150px",
             fontSize: {xs: "1.2rem", md: "1.5rem"},
@@ -128,9 +124,6 @@ export default function CarritoSection() {
               backgroundColor: "#303030",
               transform: "scale(1.02)",
             },
-          }}
-          onClick={() => {
-            navigate("/direccion");
           }}>
           <Typography
             variant="h6"
@@ -144,7 +137,7 @@ export default function CarritoSection() {
             Comprar Productos
           </Typography>
         </Button>
-      </Box>
+      </Box> */}
     </Box>
   );
 }

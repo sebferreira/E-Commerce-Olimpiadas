@@ -60,16 +60,16 @@ function crearProductos(body) {
     withToken: true,
   });
 }
-function borrarProductos(id) {
+function borrarProductos(id_producto) {
   return handleCustomApiRequest({
-    url: `${URL}/productos/${id}`,
+    url: `${URL}/productos/${id_producto}`,
     method: "DELETE",
     withToken: true,
   });
 }
-function actualizarProductos(body, id) {
+function actualizarProductos(body, id_producto) {
   return handleCustomApiRequest({
-    url: `${URL}/productos/${id}`,
+    url: `${URL}/productos/${id_producto}`,
     method: "PUT",
     body,
     withToken: true,
@@ -83,7 +83,58 @@ function insertarDireccion(body) {
     withToken: true,
   });
 }
-
+function insertarMetodoPago(body, id_usuario) {
+  return handleCustomApiRequest({
+    url: `${URL}/MetodoPago/${id_usuario}`,
+    method: "POST",
+    body,
+    withToken: true,
+  });
+}
+function insertarPedido(body, id_usuario) {
+  return handleCustomApiRequest({
+    url: `${URL}/pedidos/${id_usuario}`,
+    method: "POST",
+    body,
+    withToken: true,
+  });
+}
+function pedidosDelUsuario(id_usuario) {
+  return handleCustomApiRequest({
+    url: `${URL}/pedidos/usuario/${id_usuario}`,
+    method: "GET",
+    withToken: true,
+  });
+}
+function borrarPedido(id_pedido) {
+  return handleCustomApiRequest({
+    url: `${URL}/pedidos/${id_pedido}`,
+    method: "DELETE",
+    withToken: true,
+  });
+}
+function actualizarByMetodoPago(id_usuario) {
+  return handleCustomApiRequest({
+    url: `${URL}/pedidos/${id_usuario}`,
+    method: "PUT",
+    withToken: true,
+  });
+}
+function actualizarEstadoPedido(body, id_pedido) {
+  return handleCustomApiRequest({
+    url: `${URL}/pedidos/admin/${id_pedido}`,
+    method: "PUT",
+    body,
+    withToken: true,
+  });
+}
+function obtenerTodosPedidosAdmin() {
+  return handleCustomApiRequest({
+    url: `${URL}/pedidos/`,
+    method: "GET",
+    withToken: true,
+  });
+}
 export {
   verifyCookies,
   signIn,
@@ -92,8 +143,15 @@ export {
   getAllProducts,
   getAllProductsByGender,
   getAllProductsBySport,
+  obtenerTodosPedidosAdmin,
+  pedidosDelUsuario,
   crearProductos,
-  borrarProductos,
   actualizarProductos,
+  actualizarByMetodoPago,
+  actualizarEstadoPedido,
   insertarDireccion,
+  insertarMetodoPago,
+  insertarPedido,
+  borrarProductos,
+  borrarPedido,
 };
