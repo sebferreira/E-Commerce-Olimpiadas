@@ -101,7 +101,6 @@ export const getPedidos = async (req, res) => {
     user: user,
   });
 };
-
 export const insertAddress = async (req, res) => {
   const user = req.user;
   const {
@@ -133,4 +132,8 @@ export const insertAddress = async (req, res) => {
   console.log(newUser);
 
   res.status(200).json(newUser);
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> c3949b729d5db4e2a2cdff63b373e3a16785701b

@@ -7,10 +7,10 @@ import {
   Typography,
 } from "@mui/material";
 
-import {useEffect} from "react";
-import {useNavigate, Link} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
-import {useAuth} from "../../context/AuthContext";
+import {insertarDireccion} from "../../queryFn";
 
 export default function Direccion() {
   const {
@@ -18,17 +18,32 @@ export default function Direccion() {
     handleSubmit,
     formState: {errors},
   } = useForm();
-  const {user} = useAuth();
   const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  const [alreadySaved, setAlreadySaved] = useState(false);
 
   const onSubmit = handleSubmit(async (data) => {
-    /* signup(data); */
+    data.direccion_numero = Number(data.direccion_numero);
+    if (data.direccion_piso) {
+      data.direccion_piso = Number(data.direccion_piso);
+    } else {
+      data.direccion_piso = null;
+    }
+    if (data.direccion_dpto) {
+      data.direccion_dpto = Number(data.direccion_dpto);
+    } else {
+      data.direccion_dpto = null;
+    }
+    const newUser = await insertarDireccion(data);
+    if (newUser) {
+      setMessage("la direccion se registró correctamente");
+      setAlreadySaved(true);
+    }
   });
-  /*  useEffect(() => {
-    if (isAuthRegistered) navigate("/login");
-  }, [isAuthRegistered, navigate]);
+  useEffect(() => {
+    if (alreadySaved) navigate("/pagos");
+  }, [alreadySaved, navigate]);
 
- */
   return (
     <Grid
       container
@@ -61,7 +76,7 @@ export default function Direccion() {
               marginBottom: {xs: 2, md: 3},
               fontSize: {xs: "1.1rem", md: "1.5rem"},
             }}>
-            Dirección de envío
+            Dirección de envío (obligatorio)
           </Typography>
           <form onSubmit={onSubmit}>
             <Typography
@@ -72,7 +87,7 @@ export default function Direccion() {
                 margin: 0,
                 fontSize: {xs: "1rem", md: "1.2rem"},
               }}>
-              direccion_calle
+              Calle (obligatorio)
             </Typography>
             <TextField
               fullWidth
@@ -117,7 +132,7 @@ export default function Direccion() {
               size="small"
               variant="outlined"
             />
-            {errors.apellido && (
+            {errors.direccion_numero && (
               <Typography
                 color="error"
                 variant="body2"
@@ -136,7 +151,7 @@ export default function Direccion() {
                 margin: 0,
                 fontSize: {xs: "1rem", md: "1.2rem"},
               }}>
-              Ciudad(obligatorio)
+              Ciudad (obligatorio)
             </Typography>
             <TextField
               fullWidth
@@ -169,7 +184,7 @@ export default function Direccion() {
                 margin: 0,
                 fontSize: {xs: "1rem", md: "1.2rem"},
               }}>
-              Provincia(obligatorio)
+              Provincia (obligatorio)
             </Typography>
             <TextField
               fullWidth
@@ -267,6 +282,17 @@ export default function Direccion() {
               size="small"
               variant="outlined"
             />
+            {message && (
+              <Typography
+                variant="body2"
+                fontWeight="bold"
+                sx={{
+                  color: "green",
+                  marginTop: "0.5rem",
+                }}>
+                {message}
+              </Typography>
+            )}
 
             <Button
               variant="contained"

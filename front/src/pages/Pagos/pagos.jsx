@@ -6,7 +6,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {useAuth} from "../../context/AuthContext";
 import {useEffect} from "react";
@@ -21,6 +21,8 @@ export default function Pagos() {
   const navigate = useNavigate();
 
   const onSubmit = handleSubmit(async (data) => {
+    data.cod_tarjeta = Number(data.cod_tarjeta);
+    data.num_tarjeta = Number(data.num_tarjeta);
     /* signin(data); */
   });
   /*
