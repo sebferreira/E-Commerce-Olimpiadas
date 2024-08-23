@@ -37,61 +37,31 @@ export const obtenerPedidoPorId = async (req, res) => {
   }
 };
 
-export const crearPedido = async (req, res) => {
+export const obtenerPedidosPorUsuario = async (req, res) => {
   try {
-    const user = req.user;
+    // const user = req.user;
 
-    const {estado} = req.body;
+    // if (!user) {
+    //   return res.status(401).json(["Unauthorized"]);
+    // }
 
-    const nuevopedido = await Pedido.create({estado});
+    const {id_usuario} = req.params;
+    const pedidos = await Pedido.findAll({where: {id_usuario}});
 
-    const pedidoGuardado = await nuevopedido.save();
+    if (!pedidos) {
+      return res.status(404).json(["El usuario no tiene pedidos"]);
+    }
 
-    res.status(200).json(pedidoGuardado);
+    res.status(200).json(pedidos);
   } catch (error) {
     console.error(error);
     res.status(500).json(["Server error"]);
   }
 };
 
-export const actualizarPedido = async (req, res) => {
+export const crearPedido = async (req, res) => {
   try {
-    const user = req.user;
-
-    if (user.rol != "admin") {
-      return res.status(401).json(["Unauthorized"]);
-    }
-
-    const {id} = req.params;
-
-    const pedido = await pedido.findByPk(id);
-    if (!pedido) {
-      return res.status(404).json(["El pedido buscado no existe"]);
-    }
-
-    const {
-      caracteristicas,
-      descripcion,
-      deporte,
-      tipo,
-      genero,
-      talle,
-      precio,
-      stock,
-    } = req.body;
-
-    await pedido.update({
-      caracteristicas,
-      descripcion,
-      deporte,
-      tipo,
-      genero,
-      talle,
-      precio,
-      stock,
-    });
-
-    res.status(200).json(pedido);
+    //
   } catch (error) {
     console.error(error);
     res.status(500).json(["Server error"]);
@@ -100,24 +70,7 @@ export const actualizarPedido = async (req, res) => {
 
 export const borrarPedido = async (req, res) => {
   try {
-    const user = req.user;
-
-    if (user.rol != "admin") {
-      return res.status(401).json(["Unauthorized"]);
-    }
-
-    const {id} = req.params;
-
-    const pedido = await pedido.findByPk(id);
-    if (!pedido) {
-      return res.status(404).json(["El pedido buscado no existe"]);
-    }
-
-    const pedidoEliminado = pedido;
-
-    await pedido.destroy();
-
-    res.status(200).json(pedidoEliminado);
+    //
   } catch (error) {
     console.error(error);
     res.status(500).json(["Server error"]);

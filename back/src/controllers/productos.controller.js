@@ -76,9 +76,9 @@ export const crearProducto = async (req, res) => {
   try {
     const user = req.user;
 
-    // if (user.rol != "admin") {
-    //   return res.status(401).json(["Unauthorized"]);
-    // }
+    if (user.rol != "admin") {
+      return res.status(401).json(["Unauthorized"]);
+    }
 
     const {
       caracteristicas,
@@ -113,11 +113,11 @@ export const crearProducto = async (req, res) => {
 
 export const actualizarProducto = async (req, res) => {
   try {
-    /* const user = req.user;
+    const user = req.user;
 
     if (user.rol != "admin") {
       return res.status(401).json(["Unauthorized"]);
-    } */
+    }
 
     const {id} = req.params;
 
@@ -157,11 +157,11 @@ export const actualizarProducto = async (req, res) => {
 
 export const borrarProducto = async (req, res) => {
   try {
-    /*  const user = req.user;
+    const user = req.user;
 
     if (user.rol != "admin") {
       return res.status(401).json(["Unauthorized"]);
-    } */
+    }
 
     const {id} = req.params;
 

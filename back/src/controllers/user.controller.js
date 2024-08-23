@@ -101,3 +101,36 @@ export const getPedidos = async (req, res) => {
     user: user,
   });
 };
+
+export const insertAddress = async (req, res) => {
+  const user = req.user;
+  const {
+    direccion_calle,
+    direccion_numero,
+    direccion_ciudad,
+    direccion_provincia,
+    direccion_codigo_postal,
+    direccion_piso,
+    direccion_dpto,
+  } = req.body;
+  if (!user) {
+    return res.status(401).json(["Unauthorized"]);
+  }
+  const usuarioBD = await User.findByPk(user.id_usuario);
+  if (!usuarioBD) {
+    return res.status(404).json(["Usuario no encontrado"]);
+  }
+  const newUser = await usuarioBD.update({
+    direccion_calle,
+    direccion_numero,
+    direccion_ciudad,
+    direccion_provincia,
+    direccion_codigo_postal,
+    direccion_piso,
+    direccion_dpto,
+  });
+
+  console.log(newUser);
+
+  res.status(200).json(newUser);
+};
