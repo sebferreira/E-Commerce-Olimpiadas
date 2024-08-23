@@ -1,6 +1,6 @@
 import {Box, Container, Typography} from "@mui/material";
-import ProductsSection from "../../components/ProductSection/productSection";
 import {useParams} from "react-router-dom";
+import CarritoSection from "../../components/ProductSection/carritoSection";
 
 export default function Carrito() {
   const params = useParams();
@@ -37,7 +37,7 @@ export default function Carrito() {
               }}>
               Tú carrito de compras
             </Typography>
-            <ProductsSection />
+            <CarritoSection />
           </Box>
         </Box>
       </Container>
