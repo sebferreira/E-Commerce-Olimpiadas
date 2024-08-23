@@ -180,6 +180,7 @@ export default function App() {
                     style={{
                       overflowY: "hidden",
                       marginTop: "5rem",
+                      height: "100vh",
                     }}>
                     <Pagos />
                   </main>

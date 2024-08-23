@@ -21,6 +21,8 @@ export default function Pagos() {
   const navigate = useNavigate();
 
   const onSubmit = handleSubmit(async (data) => {
+    data.cod_tarjeta = Number(data.cod_tarjeta);
+    data.num_tarjeta = Number(data.num_tarjeta);
     /* signin(data); */
   });
   /*

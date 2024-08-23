@@ -75,6 +75,14 @@ function actualizarProductos(body, id) {
     withToken: true,
   });
 }
+function insertarDireccion(body) {
+  return handleCustomApiRequest({
+    url: `${URL}/direccion`,
+    method: "PUT",
+    body,
+    withToken: true,
+  });
+}
 
 export {
   verifyCookies,
@@ -87,4 +95,5 @@ export {
   crearProductos,
   borrarProductos,
   actualizarProductos,
+  insertarDireccion,
 };
