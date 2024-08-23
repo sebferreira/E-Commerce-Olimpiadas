@@ -7,7 +7,7 @@ const salt = Number(process.env.SALT);
 
 export const registerUser = async (req, res, next) => {
   try {
-    const {nombre, apellido, telefono, dni, email, password, confirmar} =
+    const {nombre, apellido, telefono, dni, email, password, confirmar, rol} =
       req.body;
     if (password !== confirmar) {
       return res.status(400).json(["Las contraseñas no coinciden"]);
@@ -27,6 +27,7 @@ export const registerUser = async (req, res, next) => {
       dni,
       telefono,
       email,
+      rol,
       password: hashedPassword,
     });
     const userSaved = await newUser.save();

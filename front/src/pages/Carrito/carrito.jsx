@@ -1,8 +1,8 @@
 import {Box, Container, Typography} from "@mui/material";
+import ProductsSection from "../../components/ProductSection/productSection";
 import {useParams} from "react-router-dom";
-import SportsSection from "../../components/ProductSection/sportSection";
 
-export default function FilterPageBySport() {
+export default function Carrito() {
   const params = useParams();
   return (
     <>
@@ -35,9 +35,9 @@ export default function FilterPageBySport() {
                 marginBottom: "1rem",
                 height: "fit-content",
               }}>
-              Nuestros Productos de {params.deporte}
+              Tú carrito de compras
             </Typography>
-            <SportsSection />
+            <ProductsSection />
           </Box>
         </Box>
       </Container>

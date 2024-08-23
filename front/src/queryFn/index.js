@@ -31,5 +31,27 @@ function userLogout() {
     withToken: true,
   });
 }
+function getAllProducts() {
+  return handleCustomApiRequest({
+    url: `${URL}/productos`,
+    method: "GET",
+    withToken: true,
+  });
+}
+function getAllProductsByGender(gender) {
+  return handleCustomApiRequest({
+    url: `${URL}/productos/genero/${gender}`,
+    method: "GET",
+    withToken: true,
+  });
+}
+function getAllProductsBySport(sport) {
+  return handleCustomApiRequest({
+    url: `${URL}/productos/deporte/${sport}`,
+    method: "GET",
+    withToken: true,
+  });
+}
 
-export {verifyCookies, signIn, signUp, userLogout};
+
+export {verifyCookies, signIn, signUp, userLogout, getAllProducts, getAllProductsByGender, getAllProductsBySport};

@@ -13,6 +13,8 @@ import NavbarAuth from "./components/Navbars/navbarAuth";
 import FilterPageByGender from "./pages/FilterPageByGender/filterPageByGender";
 import DeportesController from "./pages/Sports/sports";
 import FilterPageBySport from "./pages/FilterPageBySport/filterPageBySport";
+import Carrito from "./pages/Carrito/carrito";
+import AdminProtectedRoute from "./AdminProtectedRoute";
 
 export default function App() {
   return (
@@ -133,20 +135,39 @@ export default function App() {
               </>
             }
           />
-          {/*  <Route
-            path="/producto/:idProducto"
+          <Route
+            path="/productos/carrito"
             element={
               <>
+                <Navbar />
                 <main
                   style={{
-                    height: "100vh",
-                    width: "100%",
+                    overflowY: "hidden",
+                    marginTop: "5rem",
                   }}>
-                  <ProductoVista />
+                  <Carrito />
                 </main>
               </>
             }
-          /> */}
+          />
+          <Route element={<AdminProtectedRoute />}>
+          <Route
+            path="/agregar"
+            element={
+              <>
+                <Navbar />
+                <main
+                  style={{
+                    overflowY: "hidden",
+                    marginTop: "5rem",
+                  }}>
+                  <Carrito />
+                </main>
+              </>
+            }
+          />
+
+          </Route> 
           {/* <Route element={<ProtectedRoute />}></Route> */}
         </Routes>
       </BrowserRouter>

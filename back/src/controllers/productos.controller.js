@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import Producto from "../models/productos.model.js";
 
 export const obtenerProductos = async (req, res) => {
@@ -17,8 +18,8 @@ export const obtenerProductos = async (req, res) => {
 
 export const obtenerProductoPorId = async (req, res) => {
   try {
-    const {productoId} = req.params;
-    const producto = await Producto.findByPk(productoId);
+    const {id} = req.params;
+    const producto = await Producto.findByPk(id);
 
     if (!producto) {
       return res.status(404).json(["El producto buscado no existe"]);
@@ -73,9 +74,9 @@ export const crearProducto = async (req, res) => {
   try {
     const user = req.user;
 
-    if (user.rol != "admin") {
-      return res.status(401).json(["Unauthorized"]);
-    }
+    // if (user.rol != "admin") {
+    //   return res.status(401).json(["Unauthorized"]);
+    // }
 
     const {
       caracteristicas,

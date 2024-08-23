@@ -21,8 +21,10 @@ export const navLinks = [
 export const navLinksAuthenticated = [
   {
     label: "Carrito",
-    href: "/carrito",
-    icon: <ShoppingCartIcon />,
+    href: "/productos/carrito",
+    icon: <ShoppingCartIcon sx={{
+      color:"#000"
+    }} />,
   },
 ];
 export const navLinksCategory = [

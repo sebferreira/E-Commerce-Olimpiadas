@@ -6,7 +6,7 @@ import Detalles from "@mui/icons-material/Info";
 import Stock from "@mui/icons-material/Inventory";
 import Carrito from "@mui/icons-material/AddShoppingCart";
 import {useForm} from "react-hook-form";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const style = {
   position: "absolute",
@@ -34,6 +34,12 @@ export default function ModalProductView({producto}) {
     }
     console.log(data);
   });
+  useEffect(()=>{
+    const timer=setTimeout(()=>{
+      setErrorMessage("")
+    },3000)
+    return ()=> clearTimeout(timer)
+  }, [setErrorMessage])
   return (
     <Box
       sx={[
@@ -169,19 +175,12 @@ export default function ModalProductView({producto}) {
             style={{
               display: "flex",
               gap: "1rem",
+              width: "100%",
+              flexDirection: "column",
+              alignItems:"flex-end",
             }}
             onSubmit={onSubmit}>
-            <TextField
-              id="standard-basic"
-              label="Cantidad"
-              size="small"
-              sx={{
-                width: {xs: "4rem", sm: "8rem"},
-              }}
-              {...register("cantidad", {required: true})}
-              type="number"
-            />
-            {errorMessage && (
+              {!errors.cantidad && errorMessage && (
               <Typography
                 color="error"
                 variant="body2"
@@ -194,7 +193,7 @@ export default function ModalProductView({producto}) {
             )}
             {errors.cantidad && (
               <Typography
-                color="error"
+              color="error"
                 variant="body2"
                 fontWeight="bold"
                 sx={{
@@ -203,6 +202,25 @@ export default function ModalProductView({producto}) {
                 ingrese una cantidad
               </Typography>
             )}
+              <Box sx={{
+                display: "flex",
+                flexDirection: "row",
+                gap:"1rem"
+              }}>
+
+            <TextField
+              id="standard-basic"
+              label="Cantidad"
+              size="small"
+              sx={{
+                width: {xs: "4rem", sm: "8rem"},
+                
+              }}
+              {...register("cantidad", {required: true})}
+              type="number"
+              />
+
+            
             <Button
               variant="contained"
               sx={{
@@ -221,8 +239,9 @@ export default function ModalProductView({producto}) {
                 sx={{
                   fontSize: {xs: "20px", sm: "25px"},
                 }}
-              />
+                />
             </Button>
+      </Box>
           </form>
         </Box>
       )}

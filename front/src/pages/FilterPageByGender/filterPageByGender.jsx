@@ -1,9 +1,10 @@
 import {Box, Container, Typography} from "@mui/material";
 import ProductsSection from "../../components/ProductSection/productSection";
 import {useParams} from "react-router-dom";
+import GenderSection from "../../components/ProductSection/genderSection";
 
 export default function FilterPageByGender() {
-  const params = useParams();
+  const params=useParams()
   return (
     <>
       <Container
@@ -37,7 +38,7 @@ export default function FilterPageByGender() {
               }}>
               Nuestros Productos para {params.genero}
             </Typography>
-            <ProductsSection />
+            <GenderSection />
           </Box>
         </Box>
       </Container>

@@ -1,16 +1,16 @@
 import {Box, Grid} from "@mui/material";
 import Card from "../ProductCard/Card";
-import { useParams } from "react-router-dom";
-import { getAllProductsBySport } from "../../queryFn";
+import {useParams} from "react-router-dom";
 import { useEffect, useState } from "react";
+import {  getAllProductsByGender } from "../../queryFn";
 
-export default function SportsSection() {
+export default function GenderSection() {
   const params = useParams();
   const [product, useProduct]=useState([])
   const ConseguirProductos=async()=>{
-    if(params.deporte){
+    if(params.genero){
 
-      const productos=await getAllProductsBySport(params.deporte) 
+      const productos=await getAllProductsByGender(params.genero) 
       
       useProduct(productos) 
     }
@@ -18,7 +18,7 @@ export default function SportsSection() {
   
    useEffect(()=>{
     ConseguirProductos()
-  },[params.deporte]) 
+  },[params.genero]) 
   return (
     <Box
       sx={{
@@ -29,7 +29,7 @@ export default function SportsSection() {
         scrollbarWidth: "thin",
         scrollbarGutter: "stable",
       }}>
-      <Grid
+     <Grid
         container
         sx={{
           gap: "1.5rem",
@@ -39,14 +39,15 @@ export default function SportsSection() {
           flexDirection: "row",
           flexWrap: "wrap",
         }}>
-        {product .map((producto) => {
+        {product.map((producto) => {
           return (
             <Grid
               item
               xs={5}
               sm={6}
               md={4}
-              lg={2.5}
+              lg={3}
+              xl={2.5}
               key={producto.id}
               sx={{
                 backgroundColor: "#F5F5F5",
@@ -65,13 +66,13 @@ export default function SportsSection() {
                 color: "black",
                 padding: ".5rem",
                 height: {xs: "250px", sm: "320px"},
-                width: {xs: "200px", sm: "100"},
+                width: {xs: "200px", sm: "100px"},
               }}>
               <Card producto={producto} />
             </Grid>
           );
         })}
-      </Grid>
+      </Grid> 
     </Box>
   );
 }

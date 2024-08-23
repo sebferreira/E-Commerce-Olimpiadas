@@ -95,8 +95,7 @@ export default function Navbar() {
                 gap: "1rem",
                 height: "100%",
                 alignItems: "center",
-              }}>
-              {isAuthenticated &&
+              }}>{
                 navLinksAuthenticated.map((item) => {
                   return (
                     <Button
@@ -108,14 +107,13 @@ export default function Navbar() {
                         textTransform: "none",
                         color: "white",
                       }}
-                      variant="text"
                       component={Link}
                       to={item.href}>
                       {item.icon}
                     </Button>
                   );
                 })}
-              {!isAuthenticated &&
+              {
                 navLinks.map((item) => {
                   if (item.label === "Iniciar Sesion") {
                     return buttonsDesktopHome(item, "#000", "#FFF");

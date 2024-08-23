@@ -20,6 +20,7 @@ export const AuthProvider = ({children}) => {
   const [registerErrors, setRegisterErrors] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const signup = async (value) => {
     const data = await signUp(value);
@@ -37,7 +38,6 @@ export const AuthProvider = ({children}) => {
       return setLoginErrors(data);
     }
     setUser(data.user);
-
     Cookies.set("token", data.token);
     setIsAuthenticated(true);
     setLoginErrors([]);
@@ -82,9 +82,13 @@ export const AuthProvider = ({children}) => {
       setUser(data);
       setIsAuthenticated(true);
       setLoading(false);
+      if (data.rol == "admin") {
+        setIsAdmin(true);
+      }
     }
+    console.log(isAdmin);
     checkLogin();
-  }, []);
+  }, [isAdmin]);
 
   return (
     <AuthContext.Provider
@@ -98,6 +102,7 @@ export const AuthProvider = ({children}) => {
         isAuthenticated,
         loginErrors,
         registerErrors,
+        isAdmin,
       }}>
       {children}
     </AuthContext.Provider>
