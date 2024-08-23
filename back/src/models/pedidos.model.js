@@ -12,6 +12,7 @@ const Pedido = sequelize.define(
     },
     estado: {
       type: DataTypes.STRING,
+      defaultValue: "Pendiente",
     },
   },
   {

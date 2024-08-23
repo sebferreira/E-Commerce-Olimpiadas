@@ -8,20 +8,44 @@ import {useNavigate} from "react-router-dom";
 
 export default function CarritoSection() {
   const [pedidos, setPedidos] = useState([]);
+  const [total, setTotal] = useState(0);
   const {user} = useAuth();
   const navigate = useNavigate();
   const ConseguirProductos = async () => {
     if (user) {
       const pedido = await pedidosDelUsuario(user.id_usuario);
       setPedidos(pedido);
-      console.log(pedido);
+      let suma=0;
+      pedido.map((pedido)=>{
+        console.log(pedido);
+         if(pedido.estado === "Pendiente"){
+          suma=suma+( Number(pedido.Productos[0].precio) * Number(pedido.Productos[0].Pedidos_Productos.cantidad));
+      }
+      })
+      setTotal(suma);
     }
   };
-
+  /* const calcularTotal = () => {
+    if(pedidos.length>0){
+      
+      let suma=0;
+      pedidos.map((pedido)=>{
+        if(pedido.estado === "Pendiente"){
+          suma=suma+( Number(pedido.Productos[0].precio) * Number(pedido.Productos[0].cantidad));
+          console.log(suma, Number(pedido.Productos[0].precio), Number(pedido.Productos[0].cantidad));
+        }
+      })
+      setTotal(suma);
+      console.log(total);
+    }
+  }; */
+  
+  
   useEffect(() => {
     ConseguirProductos();
+    /* calcularTotal(); */
   }, [user]);
-
+  
   return (
     <Box
       sx={{
@@ -98,6 +122,8 @@ export default function CarritoSection() {
         sx={{
           display: "flex",
           flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
           marginTop: "2rem",
           marginBottom: "2rem",
         }}>
@@ -109,7 +135,7 @@ export default function CarritoSection() {
             fontSize: {xs: "1.2rem", md: "1.5rem"},
             height: "fit-content",
           }}>
-          Total:
+          Total a pagar: ${total}
         </Typography>
         <Button
           variant="contained"

@@ -4,12 +4,6 @@ import Producto from "../models/productos.model.js";
 
 export const obtenerPedidos = async (req, res) => {
   try {
-    /* const user = req.user;
-
-    if (user.rol != "admin") {
-      return res.status(401).json(["Unauthorized"]);
-    } */
-
     const pedidos = await Pedidos.findAll({
       include: [
         {

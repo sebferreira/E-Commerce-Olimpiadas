@@ -26,7 +26,7 @@ const style = {
 };
 import {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
-import {actualizarEstadoPedido, actualizarProductos} from "../../queryFn";
+import {actualizarEstadoPedido} from "../../queryFn";
 import {useNavigate} from "react-router-dom";
 
 export default function ActualizarProductoCarrito({
@@ -50,6 +50,9 @@ export default function ActualizarProductoCarrito({
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data);
+    if(data.estado==="Pendiente_de_entrega"){
+      data.estado="Pendiente de entrega";
+    }
     const productoActualizado = await actualizarEstadoPedido(data, idPedido);
     console.log(productoActualizado);
     if (productoActualizado) {

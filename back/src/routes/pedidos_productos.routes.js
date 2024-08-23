@@ -17,7 +17,7 @@ import {pedidosProductosSchema} from "../schemas/pedidos_productos.schema.js";
 
 const router = express.Router();
 
-router.get("/", obtenerPedidos);
+router.get("/todos", obtenerPedidos);
 router.get("/:id", obtenerPedidoPorId);
 router.get("/usuario/:id_usuario", obtenerPedidosPorUsuario);
 router.post(
@@ -28,6 +28,7 @@ router.post(
 router.put("/:id_usuario", actualizarPedido);
 router.get("/contar/:id_pedido", contarPlataPedido);
 router.put("/:id_pedido", borrarPedido);
+router.put("/admin/:id_pedido", actualizarUnPedido);
 router.delete("/:id_pedido", borrarPedido);
 
 export default router;

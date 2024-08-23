@@ -130,11 +130,12 @@ function actualizarEstadoPedido(body, id_pedido) {
 }
 function obtenerTodosPedidosAdmin() {
   return handleCustomApiRequest({
-    url: `${URL}/pedidos/`,
+    url: `${URL}/pedidos/todos`,
     method: "GET",
     withToken: true,
   });
 }
+
 export {
   verifyCookies,
   signIn,
