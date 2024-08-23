@@ -6,6 +6,7 @@ import WomanIcon from "@mui/icons-material/Woman";
 import CategoryIcon from "@mui/icons-material/Category";
 import SportsIcon from "@mui/icons-material/Sports";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AddIcon from "@mui/icons-material/Add";
 export const navLinks = [
   {
     label: "Iniciar Sesion",
@@ -22,9 +23,13 @@ export const navLinksAuthenticated = [
   {
     label: "Carrito",
     href: "/productos/carrito",
-    icon: <ShoppingCartIcon sx={{
-      color:"#000"
-    }} />,
+    icon: (
+      <ShoppingCartIcon
+        sx={{
+          color: "#000",
+        }}
+      />
+    ),
   },
 ];
 export const navLinksCategory = [
@@ -47,5 +52,12 @@ export const navLinksCategory = [
     label: "Deportes",
     href: "/deportes",
     icon: <SportsIcon />,
+  },
+];
+export const navAdminLinksCategory = [
+  {
+    label: "Agregar",
+    href: "/agregar",
+    icon: <AddIcon />,
   },
 ];

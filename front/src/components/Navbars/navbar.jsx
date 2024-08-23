@@ -11,6 +11,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import NavDrawer from "./Drawers/Drawer";
 import {useState} from "react";
 import {
+  navAdminLinksCategory,
   navLinks,
   navLinksAuthenticated,
   navLinksCategory,
@@ -24,8 +25,8 @@ import zorro from "../../assets/zorrologo1.png";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const {isAuthenticated, user} = useAuth();
-  console.log(isAuthenticated, user);
 
+  const usuario = user ? user : null;
   return (
     <>
       <AppBar
@@ -79,9 +80,14 @@ export default function Navbar() {
                 height: "100%",
                 alignItems: "center",
               }}>
-              {navLinksCategory.map((item) => {
-                return buttonsDesktopHome(item, "#FFFF", "#000");
-              })}
+              {navLinksCategory.map((item) =>
+                buttonsDesktopHome(item, "#FFFF", "#000", usuario)
+              )}
+              {user &&
+                user.rol === "admin" &&
+                navAdminLinksCategory.map((item) =>
+                  buttonsDesktopHome(item, "#FFFF", "#000", usuario)
+                )}
             </Box>
           </div>
           <div

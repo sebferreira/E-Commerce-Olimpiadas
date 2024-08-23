@@ -6,9 +6,10 @@ import ModalProductView from "../Modals/ModalProductView";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {borrarProductos} from "../../queryFn";
 import {useAuth} from "../../context/AuthContext";
+import ActualizarProducto from "../Modals/ModalUpdateProduct";
 
 export default function Card({producto}) {
-  const {user} = useAuth();
+  const {user, isAdmin} = useAuth();
   const [openModalView, setOpenModalView] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const handleOpenModalView = () => setOpenModalView(true);
@@ -29,6 +30,14 @@ export default function Card({producto}) {
   } else {
     color = "#172b4d";
   }
+  const usuario = user ? user : null;
+  const retornaModal = (producto) => {
+    if (usuario) {
+      if (usuario.rol === "admin")
+        return <ActualizarProducto producto={producto} />;
+      else return <ModalProductView producto={producto} />;
+    } else return <ModalProductView producto={producto} />;
+  };
   return (
     <>
       <Box onClick={(() => handleClose, handleOpenModalView)}>
@@ -157,7 +166,7 @@ export default function Card({producto}) {
         onClose={handleCloseModalView}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-        <ModalProductView producto={producto} />
+        {retornaModal(producto)}
       </Modal>
     </>
   );

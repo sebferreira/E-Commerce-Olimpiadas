@@ -67,6 +67,14 @@ function borrarProductos(id) {
     withToken: true,
   });
 }
+function actualizarProductos(body, id) {
+  return handleCustomApiRequest({
+    url: `${URL}/productos/${id}`,
+    method: "PUT",
+    body,
+    withToken: true,
+  });
+}
 
 export {
   verifyCookies,
@@ -78,4 +86,5 @@ export {
   getAllProductsBySport,
   crearProductos,
   borrarProductos,
+  actualizarProductos,
 };

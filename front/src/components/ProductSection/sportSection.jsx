@@ -48,7 +48,7 @@ export default function SportsSection() {
                 md={4}
                 /* lg={3}
                 xl={2.5} */
-                key={producto.id}
+                key={producto.id_producto}
                 sx={{
                   backgroundColor: "#F5F5F5",
                   borderRadius: 2,

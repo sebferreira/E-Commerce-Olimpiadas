@@ -7,6 +7,8 @@ import Stock from "@mui/icons-material/Inventory";
 import Carrito from "@mui/icons-material/AddShoppingCart";
 import {useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
+import ActualizarProducto from "./ModalUpdateProduct";
+import {useAuth} from "../../context/AuthContext";
 
 const style = {
   position: "absolute",
@@ -27,6 +29,7 @@ export default function ModalProductView({producto}) {
     register,
     formState: {errors},
   } = useForm();
+  const {user} = useAuth();
   const [errorMessage, setErrorMessage] = useState("");
   const onSubmit = handleSubmit((data) => {
     if (data.cantidad > producto.stock || data.cantidad <= 0) {
@@ -34,12 +37,20 @@ export default function ModalProductView({producto}) {
     }
     console.log(data);
   });
-  useEffect(()=>{
-    const timer=setTimeout(()=>{
-      setErrorMessage("")
-    },3000)
-    return ()=> clearTimeout(timer)
-  }, [setErrorMessage])
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setErrorMessage("");
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [setErrorMessage]);
+  const usuario = user ? user : null;
+  {
+    /* <>
+    {usuario && usuario.rol === "admin" && (
+      <ActualizarProducto producto={producto} />
+    )}
+    {usuario && usuario.rol != "admin" && ( */
+  }
   return (
     <Box
       sx={[
@@ -177,10 +188,10 @@ export default function ModalProductView({producto}) {
               gap: "1rem",
               width: "100%",
               flexDirection: "column",
-              alignItems:"flex-end",
+              alignItems: "flex-end",
             }}
             onSubmit={onSubmit}>
-              {!errors.cantidad && errorMessage && (
+            {!errors.cantidad && errorMessage && (
               <Typography
                 color="error"
                 variant="body2"
@@ -193,7 +204,7 @@ export default function ModalProductView({producto}) {
             )}
             {errors.cantidad && (
               <Typography
-              color="error"
+                color="error"
                 variant="body2"
                 fontWeight="bold"
                 sx={{
@@ -202,46 +213,44 @@ export default function ModalProductView({producto}) {
                 ingrese una cantidad
               </Typography>
             )}
-              <Box sx={{
+            <Box
+              sx={{
                 display: "flex",
                 flexDirection: "row",
-                gap:"1rem"
+                gap: "1rem",
               }}>
-
-            <TextField
-              id="standard-basic"
-              label="Cantidad"
-              size="small"
-              sx={{
-                width: {xs: "4rem", sm: "8rem"},
-                
-              }}
-              {...register("cantidad", {required: true})}
-              type="number"
+              <TextField
+                id="standard-basic"
+                label="Cantidad"
+                size="small"
+                sx={{
+                  width: {xs: "4rem", sm: "8rem"},
+                }}
+                {...register("cantidad", {required: true})}
+                type="number"
               />
 
-            
-            <Button
-              variant="contained"
-              sx={{
-                width: {xs: "4rem", sm: "8rem"},
-                height: {xs: "2rem", sm: "2.5rem"},
-                fontSize: "0.7rem",
-                padding: "5px",
-                backgroundColor: "#000",
-                color: "#fff",
-                "&:hover": {
-                  backgroundColor: "#333",
-                },
-              }}
-              type="submit">
-              <Carrito
+              <Button
+                variant="contained"
                 sx={{
-                  fontSize: {xs: "20px", sm: "25px"},
+                  width: {xs: "4rem", sm: "8rem"},
+                  height: {xs: "2rem", sm: "2.5rem"},
+                  fontSize: "0.7rem",
+                  padding: "5px",
+                  backgroundColor: "#000",
+                  color: "#fff",
+                  "&:hover": {
+                    backgroundColor: "#333",
+                  },
                 }}
+                type="submit">
+                <Carrito
+                  sx={{
+                    fontSize: {xs: "20px", sm: "25px"},
+                  }}
                 />
-            </Button>
-      </Box>
+              </Button>
+            </Box>
           </form>
         </Box>
       )}

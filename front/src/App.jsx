@@ -16,6 +16,8 @@ import FilterPageBySport from "./pages/FilterPageBySport/filterPageBySport";
 import Carrito from "./pages/Carrito/carrito";
 import AdminProtectedRoute from "./AdminProtectedRoute";
 import Agregar from "./pages/AgregarProductos/agregar";
+import Pagos from "./pages/Pagos/pagos";
+import Direccion from "./pages/Direccion/direccion";
 
 export default function App() {
   return (
@@ -168,7 +170,38 @@ export default function App() {
               }
             />
           </Route>
-          {/* <Route element={<ProtectedRoute />}></Route> */}
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path="/pagos"
+              element={
+                <>
+                  <Navbar />
+                  <main
+                    style={{
+                      overflowY: "hidden",
+                      marginTop: "5rem",
+                    }}>
+                    <Pagos />
+                  </main>
+                </>
+              }
+            />
+            <Route
+              path="/direccion"
+              element={
+                <>
+                  <Navbar />
+                  <main
+                    style={{
+                      overflowY: "hidden",
+                      marginTop: "5rem",
+                    }}>
+                    <Direccion />
+                  </main>
+                </>
+              }
+            />
+          </Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
