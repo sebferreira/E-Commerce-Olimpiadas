@@ -3,7 +3,7 @@ import sequelize from "../config/db.js";
 import Pedido from "./pedidos.model.js";
 import Producto from "./productos.model.js";
 
-const PedidosProductos = sequelize.define("Pedidos de Productos", {
+const PedidosProductos = sequelize.define("Pedidos_Productos", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,

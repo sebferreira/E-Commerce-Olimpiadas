@@ -10,6 +10,8 @@ import ActualizarProductoCarrito from "../Modals/ModalUpdateProductCarrito";
 export default function CardCarrito({producto, estado, idUser, idPedido}) {
   const {user} = useAuth();
   const [openModalView, setOpenModalView] = useState(false);
+  const montoTotal=Number(producto.Pedidos_Productos.cantidad)*Number(producto.precio);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const handleOpenModalView = () => setOpenModalView(true);
   const handleCloseModalView = () => setOpenModalView(false);
@@ -114,7 +116,8 @@ export default function CardCarrito({producto, estado, idUser, idPedido}) {
               padding: "10px",
             }}>
             Estado:{estado}
-            <br /> Precio: ${producto.precio}
+            <br /> Precio: ${montoTotal} <br />
+            Cantidad: {producto.Pedidos_Productos.cantidad}
           </Typography>
         </Box>
       </Box>

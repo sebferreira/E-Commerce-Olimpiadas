@@ -7,12 +7,22 @@ import CardCarrito from "../ProductCard/CardCarrito";
 
 export default function CarritoSectionAdmin() {
   const [pedidos, setPedidos] = useState([]);
+  const [total, setTotal] = useState(0);
   const {user} = useAuth();
   const ConseguirProductos = async () => {
     const pedido = await obtenerTodosPedidosAdmin();
-    console.log(pedidos);
     setPedidos(pedido);
+    let suma=0;
+      pedido.map((pedido)=>{
+        console.log(pedido);
+         if(pedido.estado === "Completado"){
+          suma=suma+( Number(pedido.Productos[0].precio) * Number(pedido.Productos[0].Pedidos_Productos.cantidad));
+      }
+      })
+      setTotal(suma);
   };
+  pedidos.map((pedido) => {
+    console.log(pedido)})
 
   useEffect(() => {
     ConseguirProductos();
@@ -30,7 +40,7 @@ export default function CarritoSectionAdmin() {
         scrollbarWidth: "thin",
         scrollbarGutter: "stable",
       }}>
-      {/* <Grid
+      <Grid
         container
         sx={{
           gap: "1.5rem",
@@ -93,7 +103,9 @@ export default function CarritoSectionAdmin() {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
           marginTop: "2rem",
           marginBottom: "2rem",
         }}>
@@ -104,7 +116,7 @@ export default function CarritoSectionAdmin() {
             marginTop: "2rem",
             fontSize: {xs: "1.2rem", md: "1.5rem"},
           }}>
-          Total:
+          Total Historico Vendidos: ${total} 
         </Typography>
         <Button
           variant="contained"
@@ -137,7 +149,7 @@ export default function CarritoSectionAdmin() {
             Comprar Productos
           </Typography>
         </Button>
-      </Box> */}
+      </Box> 
     </Box>
   );
 }
