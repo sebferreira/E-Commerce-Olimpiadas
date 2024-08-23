@@ -21,7 +21,7 @@ router.get("/:id", obtenerProductoPorId);
 router.get("/deporte/:deporte", obtenerProductoPorDeporte);
 router.get("/genero/:genero", obtenerProductoPorGenero);
 router.post("/", validateSchema(productosSchema), crearProducto);
-router.put("/", validateSchema(productosSchema), actualizarProducto);
-router.delete("/", borrarProducto);
+router.put("/:id", validateSchema(productosSchema), actualizarProducto);
+router.delete("/:id", borrarProducto);
 
 export default router;

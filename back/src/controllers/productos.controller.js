@@ -1,4 +1,4 @@
-import { Op } from "sequelize";
+import {Op} from "sequelize";
 import Producto from "../models/productos.model.js";
 
 export const obtenerProductos = async (req, res) => {
@@ -40,7 +40,7 @@ export const obtenerProductoPorDeporte = async (req, res) => {
     if (productos.length <= 0) {
       return res
         .status(404)
-        .json(["No se encontraron productos para el deporte especificado"]);
+        .json({message_error: "No se encontraron productos"});
     }
 
     res.status(200).json(productos);
@@ -60,7 +60,9 @@ export const obtenerProductoPorGenero = async (req, res) => {
     });
 
     if (productos.length <= 0) {
-      return res.status(404).json(["No se encontraron productos"]);
+      return res
+        .status(404)
+        .json({message_error: "No se encontraron productos"});
     }
 
     res.status(200).json(productos);
@@ -111,11 +113,11 @@ export const crearProducto = async (req, res) => {
 
 export const actualizarProducto = async (req, res) => {
   try {
-    const user = req.user;
+    /* const user = req.user;
 
     if (user.rol != "admin") {
       return res.status(401).json(["Unauthorized"]);
-    }
+    } */
 
     const {id} = req.params;
 
@@ -155,11 +157,11 @@ export const actualizarProducto = async (req, res) => {
 
 export const borrarProducto = async (req, res) => {
   try {
-    const user = req.user;
+    /*  const user = req.user;
 
     if (user.rol != "admin") {
       return res.status(401).json(["Unauthorized"]);
-    }
+    } */
 
     const {id} = req.params;
 

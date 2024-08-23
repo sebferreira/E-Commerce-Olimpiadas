@@ -1,16 +1,25 @@
 import {useState} from "react";
-import {Button, Divider, Modal, Typography, Box} from "@mui/material";
-import {Link} from "react-router-dom";
+import {Button, Modal, Typography, Box} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 import Carrito from "@mui/icons-material/AddShoppingCart";
 import ModalProductView from "../Modals/ModalProductView";
+import DeleteIcon from "@mui/icons-material/Delete";
+import {borrarProductos} from "../../queryFn";
+import {useAuth} from "../../context/AuthContext";
 
 export default function Card({producto}) {
+  const {user} = useAuth();
   const [openModalView, setOpenModalView] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const handleOpenModalView = () => setOpenModalView(true);
   const handleCloseModalView = () => setOpenModalView(false);
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const navigate = useNavigate();
+  const handleDelete = async () => {
+    const deleted = await borrarProductos(producto.id_producto);
+    if (deleted) navigate(0);
   };
   let color = "Unisex";
   if (producto.genero === "Mujer") {
@@ -75,7 +84,7 @@ export default function Card({producto}) {
               padding: "10px",
             }}>
             Stock:{producto.stock}
-            <br /> Precio:{producto.precio}
+            <br /> Precio: ${producto.precio}
           </Typography>
         </Box>
       </Box>
@@ -83,7 +92,29 @@ export default function Card({producto}) {
         sx={{
           display: "flex",
           justifyContent: "center",
+          gap: "1rem",
         }}>
+        {user && user.rol === "admin" && (
+          <Button
+            variant="contained"
+            sx={{
+              minWidth: "2rem",
+              width: {xs: "2rem", sm: "4rem"},
+              height: {xs: "2rem", sm: "2.5rem"},
+              padding: "5px",
+              backgroundColor: "#D32F2F",
+              "&:hover": {
+                backgroundColor: "#a32F2F",
+              },
+            }}
+            onClick={handleDelete}>
+            <DeleteIcon
+              sx={{
+                color: "#FFF",
+              }}
+            />
+          </Button>
+        )}
         {producto.stock > 0 && (
           <Button
             variant="contained"

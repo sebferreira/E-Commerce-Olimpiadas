@@ -95,25 +95,25 @@ export default function Navbar() {
                 gap: "1rem",
                 height: "100%",
                 alignItems: "center",
-              }}>{
-                navLinksAuthenticated.map((item) => {
-                  return (
-                    <Button
-                      key={item.label}
-                      style={{
-                        height: "100%",
-                        fontSize: "16px",
-                        fontWeight: "bold",
-                        textTransform: "none",
-                        color: "white",
-                      }}
-                      component={Link}
-                      to={item.href}>
-                      {item.icon}
-                    </Button>
-                  );
-                })}
-              {
+              }}>
+              {navLinksAuthenticated.map((item) => {
+                return (
+                  <Button
+                    key={item.label}
+                    style={{
+                      height: "100%",
+                      fontSize: "16px",
+                      fontWeight: "bold",
+                      textTransform: "none",
+                      color: "white",
+                    }}
+                    component={Link}
+                    to={item.href}>
+                    {item.icon}
+                  </Button>
+                );
+              })}
+              {!isAuthenticated &&
                 navLinks.map((item) => {
                   if (item.label === "Iniciar Sesion") {
                     return buttonsDesktopHome(item, "#000", "#FFF");

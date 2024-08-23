@@ -15,6 +15,7 @@ import DeportesController from "./pages/Sports/sports";
 import FilterPageBySport from "./pages/FilterPageBySport/filterPageBySport";
 import Carrito from "./pages/Carrito/carrito";
 import AdminProtectedRoute from "./AdminProtectedRoute";
+import Agregar from "./pages/AgregarProductos/agregar";
 
 export default function App() {
   return (
@@ -151,23 +152,22 @@ export default function App() {
             }
           />
           <Route element={<AdminProtectedRoute />}>
-          <Route
-            path="/agregar"
-            element={
-              <>
-                <Navbar />
-                <main
-                  style={{
-                    overflowY: "hidden",
-                    marginTop: "5rem",
-                  }}>
-                  <Carrito />
-                </main>
-              </>
-            }
-          />
-
-          </Route> 
+            <Route
+              path="/agregar"
+              element={
+                <>
+                  <Navbar />
+                  <main
+                    style={{
+                      overflowY: "hidden",
+                      marginTop: "5rem",
+                    }}>
+                    <Agregar />
+                  </main>
+                </>
+              }
+            />
+          </Route>
           {/* <Route element={<ProtectedRoute />}></Route> */}
         </Routes>
       </BrowserRouter>

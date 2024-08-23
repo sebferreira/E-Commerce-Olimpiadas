@@ -34,19 +34,6 @@ export default function SportCard({deporte}) {
               <br />
             </Typography>
           </Typography>
-
-          {/*  <Typography
-            component={Box}
-            sx={{
-              fontSize: {xs: "11px", sm: "16px"},
-              fontWeight: "bold",
-              color: color,
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "column",
-            }}>
-            {producto.genero}
-          </Typography> */}
         </Box>
       </Box>
     </>

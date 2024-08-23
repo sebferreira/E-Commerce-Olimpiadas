@@ -52,6 +52,30 @@ function getAllProductsBySport(sport) {
     withToken: true,
   });
 }
+function crearProductos(body) {
+  return handleCustomApiRequest({
+    url: `${URL}/productos/`,
+    method: "POST",
+    body,
+    withToken: true,
+  });
+}
+function borrarProductos(id) {
+  return handleCustomApiRequest({
+    url: `${URL}/productos/${id}`,
+    method: "DELETE",
+    withToken: true,
+  });
+}
 
-
-export {verifyCookies, signIn, signUp, userLogout, getAllProducts, getAllProductsByGender, getAllProductsBySport};
+export {
+  verifyCookies,
+  signIn,
+  signUp,
+  userLogout,
+  getAllProducts,
+  getAllProductsByGender,
+  getAllProductsBySport,
+  crearProductos,
+  borrarProductos,
+};
