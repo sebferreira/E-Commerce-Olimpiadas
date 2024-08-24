@@ -1,4 +1,4 @@
-import {Box, Button, Grid, Typography} from "@mui/material";
+import {Box, Button, Divider, Grid, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import {pedidosDelUsuario} from "../../queryFn";
 import {useAuth} from "../../context/AuthContext";
@@ -8,6 +8,8 @@ import {useNavigate} from "react-router-dom";
 export default function CarritoSection() {
   const [pedidos, setPedidos] = useState([]);
   const [total, setTotal] = useState(0);
+  const [productosComprar, setProductosComprar] = useState(0);
+
   const {user} = useAuth();
   const navigate = useNavigate();
   const ConseguirProductos = async () => {
@@ -15,9 +17,11 @@ export default function CarritoSection() {
       const pedido = await pedidosDelUsuario(user.id_usuario);
       setPedidos(pedido);
       let suma = 0;
+      let contenedor = 0;
       pedido.map((pedido) => {
         console.log(pedido);
         if (pedido.estado === "Pendiente") {
+          contenedor++;
           suma =
             suma +
             Number(pedido.Productos[0].precio) *
@@ -25,6 +29,7 @@ export default function CarritoSection() {
         }
       });
       setTotal(suma);
+      setProductosComprar(contenedor);
     }
   };
 
@@ -36,9 +41,9 @@ export default function CarritoSection() {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "column",
+        flexDirection: {xs: "column", md: "row"},
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: {xs: "center", md: "normal"},
         overflowX: "auto",
         scrollbarColor: "#262626 transparent",
         scrollbarWidth: "thin",
@@ -107,20 +112,40 @@ export default function CarritoSection() {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
+          flexDirection: "column" /* 
+          alignItems: "center", */,
           marginTop: "2rem",
           marginBottom: "2rem",
+          marginRight: {xs: 0, md: "2rem"},
+          backgroundColor: "#fff",
+          borderRadius: 2,
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+          width: {xs: "200px", sm: "400px"},
+          padding: "2rem",
+          cursor: "pointer",
+          height: "100%",
         }}>
+        <Typography
+          variant="h3"
+          component="h3"
+          sx={{
+            fontSize: {xs: "1.1rem", md: "1.3rem"},
+            color: "black",
+            textTransform: "none",
+          }}>
+          Resumen de compra
+        </Typography>
+        <br />
+        <Divider />
         <Typography
           variant="h5"
           sx={{
-            textAlign: "center",
             marginTop: "2rem",
-            fontSize: {xs: "1.2rem", md: "1.5rem"},
+            fontSize: {xs: "1rem", md: "1.2rem"},
             height: "fit-content",
           }}>
+          Productos pendientes a pagar: {productosComprar}
+          <br />
           Total a pagar: ${total}
         </Typography>
         <Button
@@ -129,17 +154,17 @@ export default function CarritoSection() {
           sx={{
             marginTop: "2rem",
             marginBottom: "1rem",
-            width: "150px",
+            width: "100%",
             fontSize: {xs: "1.2rem", md: "1.5rem"},
             fontWeight: "bold",
             textTransform: "none",
-            backgroundColor: "#212121",
             borderRadius: 2,
+            /* backgroundColor: "#212121",
 
             "&:hover": {
               backgroundColor: "#303030",
               transform: "scale(1.02)",
-            },
+            }, */
           }}
           onClick={() => {
             navigate("/direccion");

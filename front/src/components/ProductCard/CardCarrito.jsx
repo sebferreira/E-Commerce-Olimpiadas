@@ -37,6 +37,15 @@ export default function CardCarrito({producto, estado, idUser, idPedido}) {
   } else {
     color = "#172b4d";
   }
+  let colorEstado = "";
+  if (estado === "Pendiente") {
+    colorEstado = "#fa200f";
+  } else if (estado === "Pendiente de entrega") {
+    colorEstado = "#f06f36";
+  } else {
+    colorEstado = "#4caf50";
+  }
+
   const usuario = user ? user : null;
   const retornaModal = (producto) => {
     if (usuario) {
@@ -119,10 +128,31 @@ export default function CardCarrito({producto, estado, idUser, idPedido}) {
               fontSize: {xs: "11px", sm: "16px"},
               fontWeight: "bold",
               color: "#333",
-              padding: "10px",
+              paddingTop: "10px",
+              paddingLeft: "10px",
+              paddingRight: "10px",
+              display: "flex",
             }}>
-            Estado:{estado}
-            <br /> Precio total: ${montoTotal} <br />
+            Estado:{""} &nbsp;
+            <Typography
+              sx={{
+                fontWeight: "bold",
+                color: colorEstado,
+                fontSize: {xs: "11px", sm: "16px"},
+              }}>
+              {estado}
+            </Typography>
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: {xs: "11px", sm: "16px"},
+              fontWeight: "bold",
+              color: "#333",
+              paddingRight: "10px",
+              paddingLeft: "10px",
+              paddingBottom: "10px",
+            }}>
+            Precio total: ${montoTotal} <br />
             Cantidad: {producto.Pedidos_Productos.cantidad}
           </Typography>
         </Box>
