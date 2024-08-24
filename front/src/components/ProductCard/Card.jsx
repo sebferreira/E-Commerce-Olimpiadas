@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import {Button, Modal, Typography, Box} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import Carrito from "@mui/icons-material/AddShoppingCart";
 import ModalProductView from "../Modals/ModalProductView";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {borrarProductos, insertarPedido} from "../../queryFn";
@@ -9,7 +8,7 @@ import {useAuth} from "../../context/AuthContext";
 import ActualizarProducto from "../Modals/ModalUpdateProduct";
 
 export default function Card({producto}) {
-  const {user, isAdmin} = useAuth();
+  const {user} = useAuth();
   const [openModalView, setOpenModalView] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [message, setMessage] = useState("");
@@ -44,7 +43,7 @@ export default function Card({producto}) {
       cantidad: 1,
       id_producto: producto.id_producto,
     };
-    const pedido = await insertarPedido(body, user.id_usuario);
+    await insertarPedido(body, user.id_usuario);
     setMessage("Pediste este producto");
   };
   useEffect(() => {
@@ -158,13 +157,14 @@ export default function Card({producto}) {
               />
             </Button>
           )}
-          {producto.stock > 0 && (
+          {user && user.rol != "admin" && producto.stock > 0 && (
             <Button
               variant="contained"
               sx={{
-                width: {xs: "4rem", sm: "4rem"},
+                width: {xs: "7rem", sm: "9rem"},
                 height: {xs: "2rem", sm: "2.5rem"},
-                fontSize: "0.7rem",
+                textTransform: "none",
+                fontSize: {xs: "0.7rem", sm: "0.9rem"},
                 padding: "5px",
                 backgroundColor: "#000",
                 color: "#fff",
@@ -173,11 +173,7 @@ export default function Card({producto}) {
                 },
               }}
               onClick={handleCarrito}>
-              <Carrito
-                sx={{
-                  fontSize: {xs: "20px", sm: "25px"},
-                }}
-              />
+              Agregar al carrito
             </Button>
           )}
           {!producto.stock && (

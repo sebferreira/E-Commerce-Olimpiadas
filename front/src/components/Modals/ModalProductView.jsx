@@ -3,7 +3,6 @@ import Dinero from "@mui/icons-material/AttachMoney";
 import ProductoNombre from "@mui/icons-material/ListAlt";
 import Deporte from "@mui/icons-material/SportsBaseball";
 import Detalles from "@mui/icons-material/Info";
-import Carrito from "@mui/icons-material/AddShoppingCart";
 import {useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
 import {useAuth} from "../../context/AuthContext";
@@ -61,11 +60,15 @@ export default function ModalProductView({producto}) {
       sx={[
         style,
         {
-          width: {xs: 250, lg: 400},
-          height: {xs: 530, xl: 700},
+          width: {xs: 250, sm: 300, lg: 400},
+          height: {xs: 530, xl: 600},
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          overflowX: "auto",
+          scrollbarColor: "#262626 transparent",
+          scrollbarWidth: "thin",
+          scrollbarGutter: "stable",
         },
       ]}>
       <Box>
@@ -171,7 +174,16 @@ export default function ModalProductView({producto}) {
             Detalles
           </Typography>
         </div>
-        <Typography id="modal-modal-title">
+        <Typography
+          id="modal-modal-title"
+          sx={{
+            width: "100%",
+            whiteSpace: "initial",
+            fontSize: " 18px",
+            marginTop: "1rem",
+            height: "auto",
+            wordWrap: "break-word",
+          }}>
           {producto.caracteristicas}
           <br />
           Talle:{producto.talle} <br />
@@ -233,6 +245,7 @@ export default function ModalProductView({producto}) {
               sx={{
                 display: "flex",
                 flexDirection: "row",
+                alignItems: "center",
                 gap: "1rem",
               }}>
               <TextField
@@ -249,9 +262,10 @@ export default function ModalProductView({producto}) {
               <Button
                 variant="contained"
                 sx={{
-                  width: {xs: "4rem", sm: "8rem"},
+                  width: {xs: "7rem", sm: "9rem"},
                   height: {xs: "2rem", sm: "2.5rem"},
-                  fontSize: "0.7rem",
+                  textTransform: "none",
+                  fontSize: {xs: "0.7rem", sm: "0.9rem"},
                   padding: "5px",
                   backgroundColor: "#000",
                   color: "#fff",
@@ -260,11 +274,7 @@ export default function ModalProductView({producto}) {
                   },
                 }}
                 type="submit">
-                <Carrito
-                  sx={{
-                    fontSize: {xs: "20px", sm: "25px"},
-                  }}
-                />
+                Agregar al carrito
               </Button>
             </Box>
           </form>

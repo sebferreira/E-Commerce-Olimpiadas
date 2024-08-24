@@ -41,13 +41,13 @@ export default function GenderSection() {
         {product.length > 0 &&
           product.map((producto) => {
             return (
-              <Grid
-                item
+              <Box
+                /* item
                 xs={5}
                 sm={6}
                 md={4}
                 lg={3}
-                xl={2.5}
+                xl={2.5} */
                 key={producto.id}
                 sx={{
                   backgroundColor: "#F5F5F5",
@@ -69,7 +69,7 @@ export default function GenderSection() {
                   width: {xs: "200px", sm: "250px"},
                 }}>
                 <Card producto={producto} />
-              </Grid>
+              </Box>
             );
           })}
         {product.message_error && (

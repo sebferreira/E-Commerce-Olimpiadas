@@ -28,6 +28,10 @@ export default function ModalProductViewCarrito({producto, estado, idUser}) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          overflowX: "auto",
+          scrollbarColor: "#262626 transparent",
+          scrollbarWidth: "thin",
+          scrollbarGutter: "stable",
         },
       ]}>
       <Box>
@@ -73,7 +77,7 @@ export default function ModalProductViewCarrito({producto, estado, idUser}) {
               textAlign: "left",
               marginLeft: "1rem",
             }}>
-            Precio
+            Precio unitario
           </Typography>
         </div>
         <Typography
@@ -126,7 +130,16 @@ export default function ModalProductViewCarrito({producto, estado, idUser}) {
             Detalles
           </Typography>
         </div>
-        <Typography id="modal-modal-title">
+        <Typography
+          id="modal-modal-title"
+          sx={{
+            width: "100%",
+            whiteSpace: "initial",
+            fontSize: " 16px",
+            marginTop: "1rem",
+            height: "auto",
+            wordWrap: "break-word",
+          }}>
           {producto.caracteristicas}
           <br />
           Talle:{producto.talle} <br />

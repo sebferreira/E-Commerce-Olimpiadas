@@ -4,8 +4,7 @@ import {Box} from "@mui/material";
 import {CircularProgress} from "@mui/material";
 
 function AdminProtectedRoute() {
-  const {isAdmin, loading} = useAuth();
-  console.log(isAdmin)
+  const {user, loading, isAuthenticated} = useAuth();
   if (loading) {
     return (
       <Box
@@ -19,7 +18,10 @@ function AdminProtectedRoute() {
       </Box>
     );
   }
-  if (!loading && !isAdmin) {
+  if (!loading && !isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  if (!loading && user.rol !== "admin") {
     return <Navigate to="/" replace />;
   }
   return <Outlet />;

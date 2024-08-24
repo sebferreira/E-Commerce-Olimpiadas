@@ -62,6 +62,7 @@ export default function ActualizarProducto({producto}) {
     if (productoActualizado) {
       setMessage("Se actualizó con exito");
     }
+
     navigate(0);
   });
   useEffect(() => {
@@ -79,13 +80,16 @@ export default function ActualizarProducto({producto}) {
         style,
         {
           width: {xs: "15rem", md: "15rem", lg: "30rem"},
-          height: {xs: 500, md: 600, xl: 750},
+          height: {xs: 500, md: 530, xl: 700},
         },
       ]}>
       <Box
         sx={{
           height: "100%",
-          overflowX: "hidden",
+          overflowX: "auto",
+          scrollbarColor: "#262626 transparent",
+          scrollbarWidth: "thin",
+          scrollbarGutter: "stable",
         }}>
         <Typography
           variant="h5"

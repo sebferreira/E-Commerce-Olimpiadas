@@ -5,7 +5,6 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  TextField,
   Typography,
 } from "@mui/material";
 import Dinero from "@mui/icons-material/AttachMoney";
@@ -42,16 +41,12 @@ export default function ActualizarProductoCarrito({
     setEstado(e.target.value);
   };
   const [message, setMessage] = useState("");
-  const {
-    register,
-    handleSubmit,
-    formState: {errors},
-  } = useForm();
+  const {register, handleSubmit} = useForm();
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data);
-    if(data.estado==="Pendiente_de_entrega"){
-      data.estado="Pendiente de entrega";
+    if (data.estado === "Pendiente_de_entrega") {
+      data.estado = "Pendiente de entrega";
     }
     const productoActualizado = await actualizarEstadoPedido(data, idPedido);
     console.log(productoActualizado);
@@ -84,7 +79,10 @@ export default function ActualizarProductoCarrito({
       <Box
         sx={{
           height: "100%",
-          overflowX: "hidden",
+          overflowX: "auto",
+          scrollbarColor: "#262626 transparent",
+          scrollbarWidth: "thin",
+          scrollbarGutter: "stable",
         }}>
         <Typography
           variant="h5"
@@ -140,7 +138,7 @@ export default function ActualizarProductoCarrito({
                 textAlign: "left",
                 marginLeft: "1rem",
               }}>
-              Precio
+              Precio unitario
             </Typography>
           </div>
           <Typography
@@ -193,7 +191,16 @@ export default function ActualizarProductoCarrito({
               Detalles
             </Typography>
           </div>
-          <Typography id="modal-modal-title">
+          <Typography
+            id="modal-modal-title"
+            sx={{
+              width: "100%",
+              whiteSpace: "initial",
+              fontSize: " 16px",
+              marginTop: "1rem",
+              height: "auto",
+              wordWrap: "break-word",
+            }}>
             {producto.caracteristicas}
             <br />
             Talle:{producto.talle} <br />
@@ -233,7 +240,11 @@ export default function ActualizarProductoCarrito({
                 id="demo-simple-select"
                 label="estado"
                 {...register("estado", {required: true})}
-                value={estadoActual}
+                value={
+                  estadoActual === "Pendiente de entrega"
+                    ? "Pendiente_de_entrega"
+                    : estadoActual
+                }
                 onChange={(e) => {
                   handleChange(e, setEstadoActual);
                 }}>

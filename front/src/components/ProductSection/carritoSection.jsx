@@ -1,5 +1,4 @@
 import {Box, Button, Grid, Typography} from "@mui/material";
-import Card from "../ProductCard/Card";
 import {useEffect, useState} from "react";
 import {pedidosDelUsuario} from "../../queryFn";
 import {useAuth} from "../../context/AuthContext";
@@ -15,37 +14,24 @@ export default function CarritoSection() {
     if (user) {
       const pedido = await pedidosDelUsuario(user.id_usuario);
       setPedidos(pedido);
-      let suma=0;
-      pedido.map((pedido)=>{
+      let suma = 0;
+      pedido.map((pedido) => {
         console.log(pedido);
-         if(pedido.estado === "Pendiente"){
-          suma=suma+( Number(pedido.Productos[0].precio) * Number(pedido.Productos[0].Pedidos_Productos.cantidad));
-      }
-      })
+        if (pedido.estado === "Pendiente") {
+          suma =
+            suma +
+            Number(pedido.Productos[0].precio) *
+              Number(pedido.Productos[0].Pedidos_Productos.cantidad);
+        }
+      });
       setTotal(suma);
     }
   };
-  /* const calcularTotal = () => {
-    if(pedidos.length>0){
-      
-      let suma=0;
-      pedidos.map((pedido)=>{
-        if(pedido.estado === "Pendiente"){
-          suma=suma+( Number(pedido.Productos[0].precio) * Number(pedido.Productos[0].cantidad));
-          console.log(suma, Number(pedido.Productos[0].precio), Number(pedido.Productos[0].cantidad));
-        }
-      })
-      setTotal(suma);
-      console.log(total);
-    }
-  }; */
-  
-  
+
   useEffect(() => {
     ConseguirProductos();
-    /* calcularTotal(); */
   }, [user]);
-  
+
   return (
     <Box
       sx={{

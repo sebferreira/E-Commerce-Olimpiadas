@@ -1,35 +1,38 @@
-import {Box, Button, Grid, Typography} from "@mui/material";
-import Card from "../ProductCard/Card";
+import {Box, Grid, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import {obtenerTodosPedidosAdmin} from "../../queryFn";
-import {useAuth} from "../../context/AuthContext";
 import CardCarrito from "../ProductCard/CardCarrito";
+/* import {useAuth} from "../../context/AuthContext"; */
 
 export default function CarritoSectionAdmin() {
   const [pedidos, setPedidos] = useState([]);
   const [total, setTotal] = useState(0);
-  const {user} = useAuth();
+  /* const {user} = useAuth(); */
   const ConseguirProductos = async () => {
     const pedido = await obtenerTodosPedidosAdmin();
     setPedidos(pedido);
-    let suma=0;
-      pedido.map((pedido)=>{
-        console.log(pedido);
-         if(pedido.estado === "Completado"){
-          suma=suma+( Number(pedido.Productos[0].precio) * Number(pedido.Productos[0].Pedidos_Productos.cantidad));
+    let suma = 0;
+    pedido.map((pedido) => {
+      console.log(pedido);
+      if (pedido.estado === "Completado") {
+        suma =
+          suma +
+          Number(pedido.Productos[0].precio) *
+            Number(pedido.Productos[0].Pedidos_Productos.cantidad);
       }
-      })
-      setTotal(suma);
+    });
+    setTotal(suma);
   };
   pedidos.map((pedido) => {
-    console.log(pedido)})
+    console.log(pedido);
+  });
 
   useEffect(() => {
     ConseguirProductos();
   }, []);
 
   return (
-    <Box
+    <Grid
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -40,7 +43,15 @@ export default function CarritoSectionAdmin() {
         scrollbarWidth: "thin",
         scrollbarGutter: "stable",
       }}>
-      <Grid
+      <Typography
+        variant="h5"
+        sx={{
+          textAlign: "center",
+          fontSize: {xs: "1.2rem", md: "1.5rem"},
+        }}>
+        Total Historico de Vendidos: ${total}
+      </Typography>
+      <Box
         container
         sx={{
           gap: "1.5rem",
@@ -99,57 +110,7 @@ export default function CarritoSectionAdmin() {
             <br /> espera a que agreguen uno.
           </Typography>
         )}
-      </Grid>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "2rem",
-          marginBottom: "2rem",
-        }}>
-        <Typography
-          variant="h5"
-          sx={{
-            textAlign: "center",
-            marginTop: "2rem",
-            fontSize: {xs: "1.2rem", md: "1.5rem"},
-          }}>
-          Total Historico Vendidos: ${total} 
-        </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            marginTop: "2rem",
-            marginLeft: "1rem",
-            marginBottom: "1rem",
-            width: "150px",
-            fontSize: {xs: "1.2rem", md: "1.5rem"},
-            fontWeight: "bold",
-            textTransform: "none",
-            backgroundColor: "#212121",
-            borderRadius: 2,
-
-            "&:hover": {
-              backgroundColor: "#303030",
-              transform: "scale(1.02)",
-            },
-          }}>
-          <Typography
-            variant="h6"
-            component="span"
-            sx={{
-              fontSize: {xs: "1rem", md: "1.2rem"},
-              fontWeight: "bold",
-              color: "white",
-              textTransform: "none",
-            }}>
-            Comprar Productos
-          </Typography>
-        </Button>
-      </Box> 
-    </Box>
+      </Box>
+    </Grid>
   );
 }

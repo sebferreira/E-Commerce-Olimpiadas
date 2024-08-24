@@ -41,12 +41,13 @@ export default function SportsSection() {
         {product.length > 0 &&
           product.map((producto) => {
             return (
-              <Grid
+              <Box
+                /*
                 item
                 xs={5}
                 sm={6}
                 md={4}
-                /* lg={3}
+                lg={3}
                 xl={2.5} */
                 key={producto.id_producto}
                 sx={{
@@ -69,7 +70,7 @@ export default function SportsSection() {
                   width: {xs: "200px", sm: "250px"},
                 }}>
                 <Card producto={producto} />
-              </Grid>
+              </Box>
             );
           })}
         {product.message_error && (

@@ -2,17 +2,23 @@ import {useState} from "react";
 import {Button, Modal, Typography, Box} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {borrarPedido, borrarProductos} from "../../queryFn";
+import {borrarPedido} from "../../queryFn";
 import {useAuth} from "../../context/AuthContext";
 import ModalProductViewCarrito from "../Modals/ModalProductViewCarrito";
 import ActualizarProductoCarrito from "../Modals/ModalUpdateProductCarrito";
+import Editar from "@mui/icons-material/ModeEdit";
+import ModalProductUpdateCartUser from "../Modals/ModalUpdateProductCartUser";
 
 export default function CardCarrito({producto, estado, idUser, idPedido}) {
   const {user} = useAuth();
   const [openModalView, setOpenModalView] = useState(false);
-  const montoTotal=Number(producto.Pedidos_Productos.cantidad)*Number(producto.precio);
+  const [openModalUpdate, setOpenModalUpdate] = useState(false);
+  const montoTotal =
+    Number(producto.Pedidos_Productos.cantidad) * Number(producto.precio);
 
   const [anchorEl, setAnchorEl] = useState(null);
+  const handleOpenModalUpdate = () => setOpenModalUpdate(true);
+  const handleCloseModalUpdate = () => setOpenModalUpdate(false);
   const handleOpenModalView = () => setOpenModalView(true);
   const handleCloseModalView = () => setOpenModalView(false);
   const handleClose = () => {
@@ -116,7 +122,7 @@ export default function CardCarrito({producto, estado, idUser, idPedido}) {
               padding: "10px",
             }}>
             Estado:{estado}
-            <br /> Precio: ${montoTotal} <br />
+            <br /> Precio total: ${montoTotal} <br />
             Cantidad: {producto.Pedidos_Productos.cantidad}
           </Typography>
         </Box>
@@ -124,30 +130,39 @@ export default function CardCarrito({producto, estado, idUser, idPedido}) {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
           gap: "1rem",
         }}>
         <Button
-          variant="contained"
+          color="error"
+          variant="outlined"
           sx={{
             minWidth: "2rem",
-            width: {xs: "2rem", sm: "4rem"},
+            width: {xs: "4rem", sm: "6rem"},
             height: {xs: "2rem", sm: "2.5rem"},
             padding: "5px",
-            backgroundColor: "#D32F2F",
-            "&:hover": {
-              backgroundColor: "#a32F2F",
-            },
+            textTransform: "none",
           }}
           onClick={handleDelete}>
-          <DeleteIcon
-            sx={{
-              color: "#FFF",
-            }}
-          />
+          Sacar
         </Button>
+        {user && user.rol !== "admin" && (
+          <Button
+            variant="outlined"
+            color="info"
+            sx={{
+              minWidth: "2rem",
+              width: {xs: "5rem", sm: "6rem"},
+              height: {xs: "2rem", sm: "2.5rem"},
+              padding: "5px",
+              textTransform: "none",
+            }}
+            onClick={(() => handleClose, handleOpenModalUpdate)}>
+            Modificar
+          </Button>
+        )}
       </Box>
       <Modal
         open={openModalView}
@@ -155,6 +170,18 @@ export default function CardCarrito({producto, estado, idUser, idPedido}) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         {retornaModal(producto)}
+      </Modal>
+      <Modal
+        open={openModalUpdate}
+        onClose={handleCloseModalUpdate}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <ModalProductUpdateCartUser
+          producto={producto}
+          estado={estado}
+          idUser={idUser}
+          cantidad={producto.Pedidos_Productos.cantidad}
+        />
       </Modal>
     </>
   );
