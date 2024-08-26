@@ -7,6 +7,6 @@ export const participantes = [
   {
     rol: "Programador Backend",
     github: "https://github.com/GianlucaBenitez",
-    linkedin: "https://www.linkedin.com/in/sebastian-galarza-3a9b48262/",
+    linkedin: "https://www.linkedin.com/in/gianluca-ben%C3%ADtez-4790ab325/",
   },
 ];
