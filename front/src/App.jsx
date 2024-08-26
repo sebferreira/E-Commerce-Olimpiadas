@@ -59,6 +59,7 @@ export default function App() {
                     overflowY: "hidden",
                     marginTop: "56px",
                     width: "100%",
+                    height: "100%",
                   }}>
                   <Ayuda />
                 </main>
