@@ -436,7 +436,7 @@ export default function Ayuda() {
                     }}>
                     Modificar cantidad del producto en el carrito.
                   </Typography>
-                  1)Rn el inicio selecciona el icono de carrito. <br />
+                  1)En el inicio selecciona el icono de carrito. <br />
                   2)Presiona modificar para modificar la cantidad de productos
                   del carrito.
                 </Typography>
