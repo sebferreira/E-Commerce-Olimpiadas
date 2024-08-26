@@ -45,6 +45,7 @@ export const AuthProvider = ({children}) => {
 
   const logout = () => {
     userLogout();
+    Cookies.remove("token")
     setUser(null);
     setIsAuthenticated(false);
     setIsAuthRegistered(false);
