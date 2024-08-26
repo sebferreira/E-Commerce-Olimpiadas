@@ -1,6 +1,6 @@
 import {handleCustomApiRequest} from "./../shared/clientShared.js";
 
-const URL = "http://localhost:3000/api";
+const URL = "https://e-commerce-eestn4-api.vercel.app/api";
 
 function verifyCookies() {
   return handleCustomApiRequest({
