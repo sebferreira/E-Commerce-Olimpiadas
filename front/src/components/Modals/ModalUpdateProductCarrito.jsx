@@ -44,12 +44,12 @@ export default function ActualizarProductoCarrito({
   const {register, handleSubmit} = useForm();
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
+   
     if (data.estado === "Pendiente_de_entrega") {
       data.estado = "Pendiente de entrega";
     }
     const productoActualizado = await actualizarEstadoPedido(data, idPedido);
-    console.log(productoActualizado);
+  
     if (productoActualizado) {
       setMessage("Se actualizó con exito");
     }
