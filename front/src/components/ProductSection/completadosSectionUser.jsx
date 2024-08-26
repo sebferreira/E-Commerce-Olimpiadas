@@ -9,18 +9,18 @@ export default function CompletadosSectionUser() {
   const [total, setTotal] = useState(0);
   const {user} = useAuth();
   const ConseguirProductos = async () => {
-    console.log("Hola");
     const pedido = await pedidosCompletados(user.id_usuario);
     setPedidos(pedido);
     let suma = 0;
     pedido.map((pedido) => {
-      console.log(pedido);
+   if (pedido.Productos.length > 0) {
       if (pedido.estado === "Completado") {
         suma =
           suma +
           Number(pedido.Productos[0].precio) *
             Number(pedido.Productos[0].Pedidos_Productos.cantidad);
       }
+   }
     });
     setTotal(suma);
   };
@@ -89,6 +89,8 @@ export default function CompletadosSectionUser() {
         {pedidos.length > 0 &&
           pedidos.map((pedido) => {
             return (
+              <>
+                {pedido.Productos.length > 0 && (
               <Box
                 key={pedido.Productos[0].id_producto}
                 sx={{
@@ -117,7 +119,7 @@ export default function CompletadosSectionUser() {
                   idPedido={pedido.id_pedido}
                 />
               </Box>
-            );
+                )});
           })}
         {pedidos.message_error && (
           <Typography
