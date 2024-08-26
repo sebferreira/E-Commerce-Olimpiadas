@@ -7,7 +7,6 @@ export default function ProductsSection() {
   const [product, setProduct] = useState([]);
   const ConseguirProductos = async () => {
     const productos = await getAllProducts();
-    console.log(productos);
 
     setProduct(productos);
   };
