@@ -22,14 +22,6 @@ export default function PagosAprobados() {
     datosDelUsuario();
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      const actualizar = async () => {
-        await actualizarByMetodoPago(user.id_usuario);
-      };
-      actualizar();
-    }
-  }, []);
   const viveEnDepartamento = () => {
     if (user.dpto && user.piso) {
       return (
