@@ -1,23 +1,32 @@
-import {Typography, Box} from "@mui/material";
+//componentes
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Footer from "./components/Footer/footer";
+
 //providers
 import {AuthProvider} from "./context/AuthContext";
+
 //navbars
 import Navbar from "./components/Navbars/navbar";
+import NavbarAuth from "./components/Navbars/navbarAuth";
+
 //paginas
 import Signin from "./pages/Signin/signin";
 import Signup from "./pages/Signup/signup";
 import Home from "./pages/Home/home";
-import ProtectedRoute from "./ProtectedRoute";
-import NavbarAuth from "./components/Navbars/navbarAuth";
 import FilterPageByGender from "./pages/FilterPageByGender/filterPageByGender";
 import DeportesController from "./pages/Sports/sports";
 import FilterPageBySport from "./pages/FilterPageBySport/filterPageBySport";
 import Carrito from "./pages/Carrito/carrito";
-import AdminProtectedRoute from "./AdminProtectedRoute";
 import Agregar from "./pages/AgregarProductos/agregar";
 import Pagos from "./pages/Pagos/pagos";
 import Direccion from "./pages/Direccion/direccion";
+import CarritoPedidosCompletados from "./pages/CarritoPedidosCompletados/carritoPedidosCompletados";
+import Ayuda from "./pages/Ayuda/ayuda";
+
+//rutas protegidas
+import ProtectedRoute from "./ProtectedRoute";
+import AdminProtectedRoute from "./AdminProtectedRoute";
+import PagosAprobados from "./pages/Pagos/aprobado";
 
 export default function App() {
   return (
@@ -36,30 +45,25 @@ export default function App() {
                   }}>
                   <Home />
                 </main>
-                <footer
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/ayuda"
+            element={
+              <>
+                <Navbar />
+                <main
                   style={{
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    backgroundColor: "#000",
-                    color: "#fff",
-                    padding: "0.5rem",
-                    textAlign: "center",
+                    overflowY: "hidden",
+                    marginTop: "56px",
+                    height: "100vh",
+                    width: "100%",
                   }}>
-                  <Box>
-                    <Typography
-                      variant="subtitle1"
-                      sx={{
-                        fontSize: {xs: "0.9rem", md: "1.1rem"},
-                      }}
-                      style={{
-                        marginTop: "2rem",
-                        marginBottom: "1rem",
-                      }}>
-                      2024 E.E.S.T N°4.
-                    </Typography>
-                  </Box>
-                </footer>
+                  <Ayuda />
+                </main>
+                <Footer />
               </>
             }
           />
@@ -153,6 +157,21 @@ export default function App() {
               </>
             }
           />
+          <Route
+            path="/productos/carrito/completados"
+            element={
+              <>
+                <Navbar />
+                <main
+                  style={{
+                    overflowY: "hidden",
+                    marginTop: "5rem",
+                  }}>
+                  <CarritoPedidosCompletados />
+                </main>
+              </>
+            }
+          />
           <Route element={<AdminProtectedRoute />}>
             <Route
               path="/agregar"
@@ -183,6 +202,22 @@ export default function App() {
                       height: "100vh",
                     }}>
                     <Pagos />
+                  </main>
+                </>
+              }
+            />
+            <Route
+              path="/pagos/aprobado"
+              element={
+                <>
+                  <Navbar />
+                  <main
+                    style={{
+                      overflowY: "hidden",
+                      marginTop: "5rem",
+                      height: "100vh",
+                    }}>
+                    <PagosAprobados />
                   </main>
                 </>
               }

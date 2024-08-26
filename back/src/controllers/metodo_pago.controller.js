@@ -32,3 +32,11 @@ export const crearPago = async (req, res) => {
     res.status(500).json(["Server error"]);
   }
 };
+export const crearOrden = async (req, res) => {
+  try {
+    mercadopago;
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(["Server error"]);
+  }
+};

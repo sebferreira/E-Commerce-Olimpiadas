@@ -5,6 +5,8 @@ import Detalles from "@mui/icons-material/Info";
 import {useAuth} from "../../context/AuthContext";
 import {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
+import {actualizarCantidadPedido} from "../../queryFn";
+import {useNavigate} from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -24,6 +26,7 @@ export default function ModalProductUpdateCartUser({
   estado,
   idUser,
   cantidad,
+  idPedido,
 }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [message, setMessage] = useState("");
@@ -37,17 +40,21 @@ export default function ModalProductUpdateCartUser({
     register,
     formState: {errors},
   } = useForm();
-  const {user} = useAuth();
+  const navigate = useNavigate();
   const onSubmit = handleSubmit(async (data) => {
-    data.cantidad = Number(data.cantidad);
-    if (data.cantidad > producto.stock || data.cantidad <= 0) {
+    const id_pedido = idPedido;
+
+    if (Number(data.cantidad) > producto.stock || Number(data.cantidad) <= 0) {
       return setErrorMessage("Ingresa una cantidad acorde al stock");
     }
-    /* data.id_producto = producto.id_producto;
-    const pedido = await insertarPedido(data, user.id_usuario); */
+    const pedido = await actualizarCantidadPedido(
+      {nuevaCantidad: Number(data.cantidad)},
+      id_pedido
+    );
     if (pedido) {
       setMessage("cantidad cambiada con éxito");
     }
+    navigate(0);
   });
   useEffect(() => {
     if (errorMessage) {

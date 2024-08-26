@@ -9,8 +9,7 @@ import {
 import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {useAuth} from "../../context/AuthContext";
-import {useEffect} from "react";
-import {actualizarByMetodoPago, insertarMetodoPago} from "../../queryFn";
+import {insertarMetodoPago} from "../../queryFn";
 
 export default function Pagos() {
   const {
@@ -25,17 +24,9 @@ export default function Pagos() {
     data.cod_tarjeta = Number(data.cod_tarjeta);
     const pago = await insertarMetodoPago(data, user.id_usuario);
     if (pago) {
-      const pedido = await actualizarByMetodoPago(user.id_usuario);
-
-      if (pedido) return navigate("/productos/carrito");
+      return navigate("/pagos/aprobado");
     }
   });
-  /*
-   useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/");
-    }
-  }, [isAuthenticated, navigate]); */
   return (
     <Grid
       container

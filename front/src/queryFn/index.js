@@ -135,6 +135,35 @@ function obtenerTodosPedidosAdmin() {
     withToken: true,
   });
 }
+function actualizarCantidadPedido(body, id_pedido) {
+  return handleCustomApiRequest({
+    url: `${URL}/pedidos/usuario/${id_pedido}`,
+    method: "PUT",
+    body,
+    withToken: true,
+  });
+}
+function pedidosCompletados(id_usuario) {
+  return handleCustomApiRequest({
+    url: `${URL}/pedidos/completados/${id_usuario}`,
+    method: "GET",
+    withToken: true,
+  });
+}
+function pedidosCompletadosAdmin() {
+  return handleCustomApiRequest({
+    url: `${URL}/pedidos/TodosCompletados/admin`,
+    method: "GET",
+    withToken: true,
+  });
+}
+function datosUser() {
+  return handleCustomApiRequest({
+    url: `${URL}/profile`,
+    method: "GET",
+    withToken: true,
+  });
+}
 
 export {
   verifyCookies,
@@ -155,4 +184,8 @@ export {
   insertarPedido,
   borrarProductos,
   borrarPedido,
+  actualizarCantidadPedido,
+  pedidosCompletados,
+  pedidosCompletadosAdmin,
+  datosUser,
 };

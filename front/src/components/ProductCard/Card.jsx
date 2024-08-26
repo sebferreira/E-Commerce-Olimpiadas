@@ -176,6 +176,18 @@ export default function Card({producto}) {
               Agregar al carrito
             </Button>
           )}
+          {!user && (
+            <Typography
+              sx={{
+                fontSize: {xs: "11px", sm: "16px"},
+                fontWeight: "bold",
+                padding: "10px",
+                borderRadius: 2,
+              }}>
+              Inicia sesión para comprar
+            </Typography>
+          )}
+
           {!producto.stock && (
             <Typography
               sx={{

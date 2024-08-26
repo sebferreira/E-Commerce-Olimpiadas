@@ -102,23 +102,24 @@ export default function Navbar() {
                 height: "100%",
                 alignItems: "center",
               }}>
-              {navLinksAuthenticated.map((item) => {
-                return (
-                  <Button
-                    key={item.label}
-                    style={{
-                      height: "100%",
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                      textTransform: "none",
-                      color: "white",
-                    }}
-                    component={Link}
-                    to={item.href}>
-                    {item.icon}
-                  </Button>
-                );
-              })}
+              {user &&
+                navLinksAuthenticated.map((item) => {
+                  return (
+                    <Button
+                      key={item.label}
+                      style={{
+                        height: "100%",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                        textTransform: "none",
+                        color: "white",
+                      }}
+                      component={Link}
+                      to={item.href}>
+                      {item.icon}
+                    </Button>
+                  );
+                })}
               {!isAuthenticated &&
                 navLinks.map((item) => {
                   if (item.label === "Iniciar Sesion") {

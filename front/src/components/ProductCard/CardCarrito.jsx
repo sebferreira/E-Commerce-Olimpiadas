@@ -165,34 +165,39 @@ export default function CardCarrito({producto, estado, idUser, idPedido}) {
           alignItems: "center",
           gap: "1rem",
         }}>
-        <Button
-          color="error"
-          variant="outlined"
-          sx={{
-            minWidth: "2rem",
-            width: {xs: "4rem", sm: "6rem"},
-            height: {xs: "2rem", sm: "2.5rem"},
-            padding: "5px",
-            textTransform: "none",
-          }}
-          onClick={handleDelete}>
-          Sacar
-        </Button>
-        {user && user.rol !== "admin" && (
+        {estado !== "Completado" && (
           <Button
+            color="error"
             variant="outlined"
-            color="info"
             sx={{
               minWidth: "2rem",
-              width: {xs: "5rem", sm: "6rem"},
+              width: {xs: "4rem", sm: "6rem"},
               height: {xs: "2rem", sm: "2.5rem"},
               padding: "5px",
               textTransform: "none",
             }}
-            onClick={(() => handleClose, handleOpenModalUpdate)}>
-            Modificar
+            onClick={handleDelete}>
+            Sacar
           </Button>
         )}
+        {user &&
+          user.rol !== "admin" &&
+          estado !== "Pendiente de entrega" &&
+          estado !== "Completado" && (
+            <Button
+              variant="outlined"
+              color="info"
+              sx={{
+                minWidth: "2rem",
+                width: {xs: "5rem", sm: "6rem"},
+                height: {xs: "2rem", sm: "2.5rem"},
+                padding: "5px",
+                textTransform: "none",
+              }}
+              onClick={(() => handleClose, handleOpenModalUpdate)}>
+              Modificar
+            </Button>
+          )}
       </Box>
       <Modal
         open={openModalView}
@@ -211,6 +216,7 @@ export default function CardCarrito({producto, estado, idUser, idPedido}) {
           estado={estado}
           idUser={idUser}
           cantidad={producto.Pedidos_Productos.cantidad}
+          idPedido={idPedido}
         />
       </Modal>
     </>

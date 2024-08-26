@@ -199,85 +199,98 @@ export default function ModalProductView({producto}) {
             flexDirection: "row",
             justifyContent: "flex-end",
           }}>
-          <form
-            style={{
-              display: "flex",
-              gap: "1rem",
-              width: "100%",
-              flexDirection: "column",
-              alignItems: "flex-end",
-            }}
-            onSubmit={onSubmit}>
-            {!errors.cantidad && errorMessage && (
-              <Typography
-                color="error"
-                variant="body2"
-                fontWeight="bold"
-                sx={{
-                  marginTop: "0.5rem",
-                }}>
-                {errorMessage}
-              </Typography>
-            )}
-            {message && (
-              <Typography
-                variant="body2"
-                fontWeight="bold"
-                sx={{
-                  marginTop: "0.5rem",
-                  color: "green",
-                }}>
-                {message}
-              </Typography>
-            )}
-            {errors.cantidad && (
-              <Typography
-                color="error"
-                variant="body2"
-                fontWeight="bold"
-                sx={{
-                  marginTop: "0.5rem",
-                }}>
-                ingrese una cantidad
-              </Typography>
-            )}
-            <Box
-              sx={{
+          {user && (
+            <form
+              style={{
                 display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
                 gap: "1rem",
-              }}>
-              <TextField
-                id="standard-basic"
-                label="Cantidad"
-                size="small"
+                width: "100%",
+                flexDirection: "column",
+                alignItems: "flex-end",
+              }}
+              onSubmit={onSubmit}>
+              {!errors.cantidad && errorMessage && (
+                <Typography
+                  color="error"
+                  variant="body2"
+                  fontWeight="bold"
+                  sx={{
+                    marginTop: "0.5rem",
+                  }}>
+                  {errorMessage}
+                </Typography>
+              )}
+              {message && (
+                <Typography
+                  variant="body2"
+                  fontWeight="bold"
+                  sx={{
+                    marginTop: "0.5rem",
+                    color: "green",
+                  }}>
+                  {message}
+                </Typography>
+              )}
+              {errors.cantidad && (
+                <Typography
+                  color="error"
+                  variant="body2"
+                  fontWeight="bold"
+                  sx={{
+                    marginTop: "0.5rem",
+                  }}>
+                  ingrese una cantidad
+                </Typography>
+              )}
+              <Box
                 sx={{
-                  width: {xs: "4rem", sm: "8rem"},
-                }}
-                {...register("cantidad", {required: true})}
-                type="number"
-              />
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: "1rem",
+                }}>
+                <TextField
+                  id="standard-basic"
+                  label="Cantidad"
+                  size="small"
+                  sx={{
+                    width: {xs: "4rem", sm: "8rem"},
+                  }}
+                  {...register("cantidad", {required: true})}
+                  type="number"
+                />
 
-              <Button
-                variant="contained"
-                sx={{
-                  width: {xs: "7rem", sm: "9rem"},
-                  height: {xs: "2rem", sm: "2.5rem"},
-                  textTransform: "none",
-                  fontSize: {xs: "0.7rem", sm: "0.9rem"},
-                  padding: "5px",
-                  backgroundColor: "#000",
-                  color: "#fff",
-                  "&:hover": {
-                    backgroundColor: "#333",
-                  },
-                }}
-                type="submit">
-                Agregar al carrito
-              </Button>
-            </Box>
-          </form>
+                <Button
+                  variant="contained"
+                  sx={{
+                    width: {xs: "7rem", sm: "9rem"},
+                    height: {xs: "2rem", sm: "2.5rem"},
+                    textTransform: "none",
+                    fontSize: {xs: "0.7rem", sm: "0.9rem"},
+                    padding: "5px",
+                    backgroundColor: "#000",
+                    color: "#fff",
+                    "&:hover": {
+                      backgroundColor: "#333",
+                    },
+                  }}
+                  type="submit">
+                  Agregar al carrito
+                </Button>
+              </Box>
+            </form>
+          )}
+          {!user && (
+            <Typography
+              sx={{
+                fontSize: {xs: "13px", sm: "16px"},
+                fontWeight: "bold",
+                padding: "10px",
+                borderRadius: 2,
+              }}>
+              Debes Iniciar sesión para comprar
+            </Typography>
+          )}
         </Box>
       )}
       {!producto.stock && (

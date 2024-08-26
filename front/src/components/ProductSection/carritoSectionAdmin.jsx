@@ -1,31 +1,16 @@
-import {Box, Grid, Typography} from "@mui/material";
+import {Box, Button, Divider, Grid, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import {obtenerTodosPedidosAdmin} from "../../queryFn";
 import CardCarrito from "../ProductCard/CardCarrito";
-/* import {useAuth} from "../../context/AuthContext"; */
+import {useNavigate} from "react-router-dom";
 
 export default function CarritoSectionAdmin() {
   const [pedidos, setPedidos] = useState([]);
-  const [total, setTotal] = useState(0);
-  /* const {user} = useAuth(); */
+  const navigate = useNavigate();
   const ConseguirProductos = async () => {
     const pedido = await obtenerTodosPedidosAdmin();
     setPedidos(pedido);
-    let suma = 0;
-    pedido.map((pedido) => {
-      console.log(pedido);
-      if (pedido.estado === "Completado") {
-        suma =
-          suma +
-          Number(pedido.Productos[0].precio) *
-            Number(pedido.Productos[0].Pedidos_Productos.cantidad);
-      }
-    });
-    setTotal(suma);
   };
-  pedidos.map((pedido) => {
-    console.log(pedido);
-  });
 
   useEffect(() => {
     ConseguirProductos();
@@ -43,14 +28,57 @@ export default function CarritoSectionAdmin() {
         scrollbarWidth: "thin",
         scrollbarGutter: "stable",
       }}>
-      <Typography
-        variant="h5"
+      <Box
         sx={{
-          textAlign: "center",
-          fontSize: {xs: "1.2rem", md: "1.5rem"},
+          display: "flex",
+          flexDirection: "column",
+          backgroundColor: "#fff",
+          borderRadius: 2,
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+          width: {xs: "200px", sm: "400px"},
+          padding: "2rem",
+          height: "100%",
         }}>
-        Total Historico de Vendidos: ${total}
-      </Typography>
+        <Typography
+          variant="h3"
+          component="h3"
+          sx={{
+            fontSize: {xs: "1.1rem", md: "1.3rem"},
+            color: "black",
+            textTransform: "none",
+          }}>
+          Resumen historico de compras
+        </Typography>
+        <br />
+        <Divider />
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{
+            marginTop: "2rem",
+            marginBottom: "1rem",
+            width: "100%",
+            fontSize: {xs: "1.2rem", md: "1.5rem"},
+            fontWeight: "bold",
+            textTransform: "none",
+            borderRadius: 2,
+          }}
+          onClick={() => {
+            navigate("/productos/carrito/completados");
+          }}>
+          <Typography
+            variant="h6"
+            component="span"
+            sx={{
+              fontSize: {xs: "1rem", md: "1.2rem"},
+              fontWeight: "bold",
+              color: "white",
+              textTransform: "none",
+            }}>
+            Ver los comprados
+          </Typography>
+        </Button>
+      </Box>
       <Box
         container
         sx={{
@@ -64,34 +92,38 @@ export default function CarritoSectionAdmin() {
         {pedidos.length > 0 &&
           pedidos.map((pedido) => {
             return (
-              <Box
-                key={pedido.Productos[0].id_producto}
-                sx={{
-                  backgroundColor: "#F5F5F5",
-                  borderRadius: 2,
-                  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
-                  cursor: "pointer",
-                  "&:hover": {
-                    backgroundColor: "#E0E0E0",
-                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-                    transition: "box-shadow 0.3s ease-in-out",
-                    transform: "scale(1.02)",
-                  },
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: {xs: "space-evenly", sm: "space-between"},
-                  color: "black",
-                  padding: ".5rem",
-                  height: {xs: "250px", sm: "320px"},
-                  width: {xs: "200px", sm: "250px"},
-                }}>
-                <CardCarrito
-                  producto={pedido.Productos[0]}
-                  estado={pedido.estado}
-                  idUser={pedido.id_usuario}
-                  idPedido={pedido.id_pedido}
-                />
-              </Box>
+              <>
+                {pedido.Productos.length > 0 && (
+                  <Box
+                    key={pedido.id_pedido}
+                    sx={{
+                      backgroundColor: "#F5F5F5",
+                      borderRadius: 2,
+                      boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+                      cursor: "pointer",
+                      "&:hover": {
+                        backgroundColor: "#E0E0E0",
+                        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+                        transition: "box-shadow 0.3s ease-in-out",
+                        transform: "scale(1.02)",
+                      },
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: {xs: "space-evenly", sm: "space-between"},
+                      color: "black",
+                      padding: ".5rem",
+                      height: {xs: "250px", sm: "320px"},
+                      width: {xs: "200px", sm: "250px"},
+                    }}>
+                    <CardCarrito
+                      producto={pedido.Productos[0]}
+                      estado={pedido.estado}
+                      idUser={pedido.id_usuario}
+                      idPedido={pedido.id_pedido}
+                    />
+                  </Box>
+                )}
+              </>
             );
           })}
         {pedidos.message_error && (

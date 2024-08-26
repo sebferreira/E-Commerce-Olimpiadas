@@ -19,13 +19,16 @@ export default function CarritoSection() {
       let suma = 0;
       let contenedor = 0;
       pedido.map((pedido) => {
-        console.log(pedido);
-        if (pedido.estado === "Pendiente") {
-          contenedor++;
-          suma =
-            suma +
-            Number(pedido.Productos[0].precio) *
-              Number(pedido.Productos[0].Pedidos_Productos.cantidad);
+        if (pedido.Productos.length > 0) {
+          if (pedido.estado === "Pendiente") {
+            contenedor += Number(
+              pedido.Productos[0].Pedidos_Productos.cantidad
+            );
+            suma =
+              suma +
+              Number(pedido.Productos[0].precio) *
+                Number(pedido.Productos[0].Pedidos_Productos.cantidad);
+          }
         }
       });
       setTotal(suma);
@@ -62,34 +65,38 @@ export default function CarritoSection() {
         {pedidos.length > 0 &&
           pedidos.map((pedido) => {
             return (
-              <Box
-                key={pedido.Productos[0].id_producto}
-                sx={{
-                  backgroundColor: "#F5F5F5",
-                  borderRadius: 2,
-                  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
-                  cursor: "pointer",
-                  "&:hover": {
-                    backgroundColor: "#E0E0E0",
-                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-                    transition: "box-shadow 0.3s ease-in-out",
-                    transform: "scale(1.02)",
-                  },
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: {xs: "space-evenly", sm: "space-between"},
-                  color: "black",
-                  padding: ".5rem",
-                  height: {xs: "250px", sm: "320px"},
-                  width: {xs: "200px", sm: "250px"},
-                }}>
-                <CardCarrito
-                  producto={pedido.Productos[0]}
-                  estado={pedido.estado}
-                  idUser={pedido.id_usuario}
-                  idPedido={pedido.id_pedido}
-                />
-              </Box>
+              <>
+                {pedido.Productos.length > 0 && (
+                  <Box
+                    key={pedido.id_pedido}
+                    sx={{
+                      backgroundColor: "#F5F5F5",
+                      borderRadius: 2,
+                      boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+                      cursor: "pointer",
+                      "&:hover": {
+                        backgroundColor: "#E0E0E0",
+                        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+                        transition: "box-shadow 0.3s ease-in-out",
+                        transform: "scale(1.02)",
+                      },
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: {xs: "space-evenly", sm: "space-between"},
+                      color: "black",
+                      padding: ".5rem",
+                      height: {xs: "250px", sm: "320px"},
+                      width: {xs: "200px", sm: "250px"},
+                    }}>
+                    <CardCarrito
+                      producto={pedido.Productos[0]}
+                      estado={pedido.estado}
+                      idUser={pedido.id_usuario}
+                      idPedido={pedido.id_pedido}
+                    />
+                  </Box>
+                )}
+              </>
             );
           })}
         {pedidos.message_error && (
@@ -109,79 +116,129 @@ export default function CarritoSection() {
           </Typography>
         )}
       </Grid>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column" /* 
+      <div>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column" /* 
           alignItems: "center", */,
-          marginTop: "2rem",
-          marginBottom: "2rem",
-          marginRight: {xs: 0, md: "2rem"},
-          backgroundColor: "#fff",
-          borderRadius: 2,
-          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
-          width: {xs: "200px", sm: "400px"},
-          padding: "2rem",
-          cursor: "pointer",
-          height: "100%",
-        }}>
-        <Typography
-          variant="h3"
-          component="h3"
-          sx={{
-            fontSize: {xs: "1.1rem", md: "1.3rem"},
-            color: "black",
-            textTransform: "none",
-          }}>
-          Resumen de compra
-        </Typography>
-        <br />
-        <Divider />
-        <Typography
-          variant="h5"
-          sx={{
             marginTop: "2rem",
-            fontSize: {xs: "1rem", md: "1.2rem"},
-            height: "fit-content",
-          }}>
-          Productos pendientes a pagar: {productosComprar}
-          <br />
-          Total a pagar: ${total}
-        </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            marginTop: "2rem",
-            marginBottom: "1rem",
-            width: "100%",
-            fontSize: {xs: "1.2rem", md: "1.5rem"},
-            fontWeight: "bold",
-            textTransform: "none",
+            marginBottom: "2rem",
+            marginRight: {xs: 0, md: "2rem"},
+            backgroundColor: "#fff",
             borderRadius: 2,
-            /* backgroundColor: "#212121",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+            width: {xs: "200px", sm: "400px"},
+            padding: "2rem",
+          }}>
+          <Typography
+            variant="h3"
+            component="h3"
+            sx={{
+              fontSize: {xs: "1.1rem", md: "1.3rem"},
+              color: "black",
+              textTransform: "none",
+            }}>
+            Factura a cobrar
+          </Typography>
+          <br />
+          <Divider />
+          <Typography
+            variant="h5"
+            sx={{
+              marginTop: "2rem",
+              fontSize: {xs: "1rem", md: "1.2rem"},
+              height: "fit-content",
+            }}>
+            Productos pendientes a pagar: {productosComprar}
+            <br />
+            Total a pagar: ${total}
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              marginTop: "2rem",
+              marginBottom: "1rem",
+              width: "100%",
+              fontSize: {xs: "1.2rem", md: "1.5rem"},
+              fontWeight: "bold",
+              textTransform: "none",
+              borderRadius: 2,
+              /* backgroundColor: "#212121",
 
             "&:hover": {
               backgroundColor: "#303030",
               transform: "scale(1.02)",
-            }, */
-          }}
-          onClick={() => {
-            navigate("/direccion");
+              }, */
+            }}
+            onClick={() => {
+              navigate("/direccion");
+            }}>
+            <Typography
+              variant="h6"
+              component="span"
+              sx={{
+                fontSize: {xs: "1rem", md: "1.2rem"},
+                fontWeight: "bold",
+                color: "white",
+                textTransform: "none",
+              }}>
+              Comprar Productos
+            </Typography>
+          </Button>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            backgroundColor: "#fff",
+            borderRadius: 2,
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+            width: {xs: "200px", sm: "400px"},
+            padding: "2rem",
           }}>
           <Typography
-            variant="h6"
-            component="span"
+            variant="h3"
+            component="h3"
             sx={{
-              fontSize: {xs: "1rem", md: "1.2rem"},
-              fontWeight: "bold",
-              color: "white",
+              fontSize: {xs: "1.1rem", md: "1.3rem"},
+              color: "black",
               textTransform: "none",
             }}>
-            Comprar Productos
+            Resumen historico de compras
           </Typography>
-        </Button>
-      </Box>
+          <br />
+          <Divider />
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              marginTop: "2rem",
+              marginBottom: "1rem",
+              width: "100%",
+              fontSize: {xs: "1.2rem", md: "1.5rem"},
+              fontWeight: "bold",
+              textTransform: "none",
+              borderRadius: 2,
+            }}
+            onClick={() => {
+              navigate("/productos/carrito/completados");
+            }}>
+            <Typography
+              variant="h6"
+              component="span"
+              sx={{
+                fontSize: {xs: "1rem", md: "1.2rem"},
+                fontWeight: "bold",
+                color: "white",
+                textTransform: "none",
+              }}>
+              Ver los comprados
+            </Typography>
+          </Button>
+        </Box>
+      </div>
     </Box>
   );
 }
