@@ -235,8 +235,8 @@ export const actualizarUnPedido = async (req, res) => {
     }
 
     const cantidadPedida = pedido.cantidad;
-    const stockProducto = pedido.Producto.stock;
-    const id_producto = pedido.Producto.id_producto;
+    const stockProducto = pedido.Producto[0].stock;
+    const id_producto = pedido.Producto[0].id_producto;
 
     if (estado === "Completado" && cantidadPedida > stockProducto) {
       return res.status(400).json(["La cantidad pedida supera al stock"]);
