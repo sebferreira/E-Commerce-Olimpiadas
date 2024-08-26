@@ -44,7 +44,6 @@ export const AuthProvider = ({children}) => {
   };
 
   const logout = () => {
-    console.log("A");
     userLogout();
     setUser(null);
     setIsAuthenticated(false);
@@ -86,7 +85,6 @@ export const AuthProvider = ({children}) => {
         setIsAdmin(true);
       }
     }
-    console.log(isAdmin);
     checkLogin();
   }, [isAdmin]);
 
