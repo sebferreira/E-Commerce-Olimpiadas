@@ -29,7 +29,6 @@ export default function Profile() {
   const FirsLetter = user.nombre
     ? user.nombre[0].toUpperCase()
     : user.user.nombre[0].toUpperCase();
-  console.log(user);
   const name = user.nombre ? user.nombre : user.user.nombre;
 
   return (
