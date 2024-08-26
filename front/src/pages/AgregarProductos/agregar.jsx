@@ -40,7 +40,6 @@ export default function Agregar() {
   const onSubmit = handleSubmit(async (data) => {
     data.stock = Number(data.stock);
     data.precio = Number(data.precio);
-    console.log(data);
     const producto = await crearProductos(data);
     if (producto) {
       setMessage("Se agregó con exito");
