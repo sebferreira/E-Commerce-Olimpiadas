@@ -21,6 +21,7 @@ export default function Ayuda() {
             alignItems: "center",
             marginTop: "2rem",
             color: "black",
+            height: "100%",
           }}>
           <Box
             sx={{
