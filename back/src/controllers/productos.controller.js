@@ -145,12 +145,7 @@ export const actualizarProducto = async (req, res) => {
 
 export const borrarProducto = async (req, res) => {
   try {
-    const user = req.user;
-
-    if (user.rol != "admin") {
-      return res.status(401).json(["Unauthorized"]);
-    }
-
+    
     const {id} = req.params;
 
     const producto = await Producto.findByPk(id);
