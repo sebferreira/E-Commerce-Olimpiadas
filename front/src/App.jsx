@@ -142,7 +142,26 @@ export default function App() {
               </>
             }
           />
-          <Route
+      
+          <Route element={<AdminProtectedRoute />}>
+            <Route
+              path="/agregar"
+              element={
+                <>
+                  <Navbar />
+                  <main
+                    style={{
+                      overflowY: "hidden",
+                      marginTop: "5rem",
+                    }}>
+                    <Agregar />
+                  </main>
+                </>
+              }
+            />
+          </Route>
+          <Route element={<ProtectedRoute />}>
+               <Route
             path="/productos/carrito"
             element={
               <>
@@ -172,24 +191,6 @@ export default function App() {
               </>
             }
           />
-          <Route element={<AdminProtectedRoute />}>
-            <Route
-              path="/agregar"
-              element={
-                <>
-                  <Navbar />
-                  <main
-                    style={{
-                      overflowY: "hidden",
-                      marginTop: "5rem",
-                    }}>
-                    <Agregar />
-                  </main>
-                </>
-              }
-            />
-          </Route>
-          <Route element={<ProtectedRoute />}>
             <Route
               path="/pagos"
               element={
