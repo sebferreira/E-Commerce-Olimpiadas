@@ -24,9 +24,6 @@ export default function CompletadosSectionUser() {
     });
     setTotal(suma);
   };
-  pedidos.map((pedido) => {
-    console.log(pedido);
-  });
 
   useEffect(() => {
     ConseguirProductos();
