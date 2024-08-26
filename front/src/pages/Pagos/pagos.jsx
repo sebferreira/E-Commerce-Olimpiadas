@@ -9,7 +9,7 @@ import {
 import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {useAuth} from "../../context/AuthContext";
-import {insertarMetodoPago} from "../../queryFn";
+import {insertarMetodoPago, actualizarByMetodoPago} from "../../queryFn";
 
 export default function Pagos() {
   const {
