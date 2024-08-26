@@ -38,6 +38,7 @@ export default function Ayuda() {
               padding: "1rem",
               height: "fit-content",
               width: {xs: "320px", sm: "500px"},
+              marginBottom:"2rem",
             }}>
             <Typography
               sx={{
