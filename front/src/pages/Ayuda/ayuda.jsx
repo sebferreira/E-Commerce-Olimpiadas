@@ -11,7 +11,7 @@ export default function Ayuda() {
           maxWidth: "100%",
           width: "100%",
           padding: "0",
-          height: "calc(100vh + 200px)",
+          height: "100%",
         }}>
         <Box
           style={{
@@ -21,7 +21,6 @@ export default function Ayuda() {
             alignItems: "center",
             marginTop: "2rem",
             color: "black",
-            height: "100%",
           }}>
           <Box
             sx={{
