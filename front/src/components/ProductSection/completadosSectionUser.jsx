@@ -119,7 +119,9 @@ export default function CompletadosSectionUser() {
                   idPedido={pedido.id_pedido}
                 />
               </Box>
-                )});
+                )}
+                </>
+                );
           })}
         {pedidos.message_error && (
           <Typography
