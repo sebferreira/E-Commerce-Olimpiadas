@@ -235,7 +235,7 @@ export const actualizarUnPedido = async (req, res) => {
     }
 
     const cantidadPedida = pedido.cantidad;
-    const stockProducto = pedido.Producto.stock;
+    let stockProducto = pedido.Producto.stock;
     const id_producto = pedido.Producto.id_producto;
 
     if (estado === "Completado" && cantidadPedida > stockProducto) {
