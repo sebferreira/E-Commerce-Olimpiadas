@@ -74,12 +74,6 @@ export const obtenerProductoPorGenero = async (req, res) => {
 
 export const crearProducto = async (req, res) => {
   try {
-    const user = req.user;
-
-    if (user.rol != "admin") {
-      return res.status(401).json(["Unauthorized"]);
-    }
-
     const {
       caracteristicas,
       descripcion,
