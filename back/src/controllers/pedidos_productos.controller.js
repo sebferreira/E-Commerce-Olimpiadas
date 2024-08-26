@@ -221,10 +221,10 @@ export const actualizarUnPedido = async (req, res) => {
     const {id_pedido} = req.params;
     const {estado} = req.body;
 
-    const pedido = await Pedidos.findByPk(id_pedido, {
+    const pedido = await PedidosProductos.findByPk(id_pedido, {
       include: [
         {
-          model: PedidosProductos,
+          model: Pedidos,
           include: [{model: Producto, attributes: ["id_producto", "stock"]}],
         },
       ],
@@ -234,9 +234,9 @@ export const actualizarUnPedido = async (req, res) => {
       return res.status(404).json(["No existe este pedido"]);
     }
 
-    const cantidadPedida = pedido.PedidosProductos.cantidad;
-    const stockProducto = pedido.PedidosProductos.Producto.stock;
-    const id_producto = pedido.PedidosProductos.Producto.id_producto;
+    const cantidadPedida = pedido.cantidad;
+    const stockProducto = pedido.Producto.stock;
+    const id_producto = pedido.Producto.id_producto;
 
     if (estado === "Completado" && cantidadPedida > stockProducto) {
       return res.status(400).json(["La cantidad pedida supera al stock"]);
