@@ -12,7 +12,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5173",
+    origin: "https://e-commerce-eestn4.vercel.app",
     methods: "GET,OPTIONS,PUT,PATCH,POST,DELETE",
   })
 );
