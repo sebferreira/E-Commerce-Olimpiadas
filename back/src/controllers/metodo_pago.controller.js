@@ -34,9 +34,11 @@ export const crearPago = async (req, res) => {
     res.status(500).json(["Server error"]);
   }
 };
+
+//no me funcionó el access_token, puse el de produccion de mi cuenta de mp developer y no me funcionó, así que lo dejé ahí
 export const mpApi = async (req, res) => {
   const client = new MercadoPagoConfig({
-    accessToken: `${process.env.ACCESS_TOKEN}`,
+    accessToken: {process.env.ACCESS_TOKEN},
   });
 
   try {
