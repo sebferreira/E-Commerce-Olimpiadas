@@ -1,5 +1,7 @@
 import MetodoPago from "../models/metodo_pago.model.js";
 import User from "../models/users.model.js";
+import {MercadoPagoConfig, Payment} from "mercadopago";
+
 /* 
 const RegExr={
 VISA : "/^4[0-9]{3}-?[0-9]{4}-?[0-9]{4}-?[0-9]{4}$/",
@@ -32,11 +34,26 @@ export const crearPago = async (req, res) => {
     res.status(500).json(["Server error"]);
   }
 };
-export const crearOrden = async (req, res) => {
+export const mpApi = async (req, res) => {
+  const client = new MercadoPagoConfig({
+    accessToken: `${process.env.ACCESS_TOKEN}`,
+  });
+
   try {
-    mercadopago;
+    const payment = new Payment(client);
+
+    const body = {
+      transaction_amount: 2,
+      description: "Compras online",
+      payment_method_id: "visa",
+      payer: {
+        email: "sebastian@gmail.com",
+      },
+    };
+    const result = await payment.create({body});
+    res.status(200).json(result);
   } catch (error) {
-    console.error(error);
-    res.status(500).json(["Server error"]);
+    console.log(error);
   }
 };
+
