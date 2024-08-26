@@ -9,7 +9,7 @@ import {
 import {Link} from "react-router-dom";
 
 export const buttonsMobileDrawerHome = (item) => {
-  console.log(item);
+  
   return (
     <ListItem disablePadding key={item.label}>
       <ListItemButton component={Link} to={item.href}>
