@@ -24,7 +24,8 @@ export default function Pagos() {
     data.cod_tarjeta = Number(data.cod_tarjeta);
     const pago = await insertarMetodoPago(data, user.id_usuario);
     if (pago) {
-      return navigate("/pagos/aprobado");
+      const response=  await actualizarByMetodoPago(user.id_usuario)
+      if(response) return navigate("/pagos/aprobado");
     }
   });
   return (
