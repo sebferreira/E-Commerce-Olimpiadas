@@ -1,6 +1,6 @@
 import MetodoPago from "../models/metodo_pago.model.js";
 import User from "../models/users.model.js";
-import {MercadoPagoConfig, Payment} from "mercadopago";
+/* import {MercadoPagoConfig, Payment} from "mercadopago"; */
 
 /* 
 const RegExr={
@@ -36,7 +36,7 @@ export const crearPago = async (req, res) => {
 };
 
 //no me funcionó el access_token, puse el de produccion de mi cuenta de mp developer y no me funcionó, así que lo dejé ahí
-export const mpApi = async (req, res) => {
+/* export const mpApi = async (req, res) => {
   const client = new MercadoPagoConfig({
     accessToken: {process.env.ACCESS_TOKEN},
   });
@@ -58,4 +58,4 @@ export const mpApi = async (req, res) => {
     console.log(error);
   }
 };
-
+ */
