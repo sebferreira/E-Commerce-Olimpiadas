@@ -62,7 +62,7 @@ export default function Ayuda() {
                     alignItems: "flex-end",
                     fontWeight: "bold",
                   }}>
-                  Registrarse.
+                  ¿Cómo registrarme?
                 </Typography>
                 <Typography
                   sx={{
@@ -90,7 +90,7 @@ export default function Ayuda() {
                     alignItems: "flex-end",
                     fontWeight: "bold",
                   }}>
-                  Iniciar sesión.
+                  ¿Cómo inicio sesión?
                 </Typography>
                 <Typography
                   sx={{
@@ -118,7 +118,7 @@ export default function Ayuda() {
                     alignItems: "flex-end",
                     fontWeight: "bold",
                   }}>
-                  Para ver productos.
+                  ¿Cómo veo los productos?
                 </Typography>
                 <Typography
                   sx={{
@@ -160,7 +160,7 @@ export default function Ayuda() {
                     alignItems: "flex-end",
                     fontWeight: "bold",
                   }}>
-                  Agregar productos.
+                  ¿Cómo agrego productos?
                 </Typography>
                 <Typography
                   sx={{
@@ -186,7 +186,7 @@ export default function Ayuda() {
                     alignItems: "flex-end",
                     fontWeight: "bold",
                   }}>
-                  Quitar productos.
+                  ¿Cómo elimino productos?
                 </Typography>
                 <Typography
                   sx={{
@@ -212,7 +212,7 @@ export default function Ayuda() {
                     alignItems: "flex-end",
                     fontWeight: "bold",
                   }}>
-                  Actualizar productos.
+                  ¿Cómo actualizo un producto?
                 </Typography>
                 <Typography
                   sx={{
@@ -258,7 +258,7 @@ export default function Ayuda() {
                       alignItems: "flex-end",
                       fontWeight: "bold",
                     }}>
-                    Sacar pedidos-
+                    ¿Cómo saco pedidos?
                   </Typography>
                   1)En el inicio selecciona el icono de carrito. <br />
                   2)Presiona modificar para modificar la cantidad de productos
@@ -282,7 +282,7 @@ export default function Ayuda() {
                       alignItems: "flex-end",
                       fontWeight: "bold",
                     }}>
-                    Modificar estado de pedidos.
+                    ¿Cómo modifico el estado de los productos?
                   </Typography>
                   1)Desde el inicio presiona el carrito <br />
                   2)Presiona algún pedido.
@@ -301,7 +301,7 @@ export default function Ayuda() {
                     alignItems: "flex-end",
                     fontWeight: "bold",
                   }}>
-                  Resumen histórico de compras.
+                  ¿Cómo veo el resumen histórico de compras?
                 </Typography>
                 <Typography
                   sx={{
@@ -334,7 +334,7 @@ export default function Ayuda() {
                     alignItems: "flex-end",
                     fontWeight: "bold",
                   }}>
-                  Agregar al carrito.
+                  ¿Cómo agrego al carrito?
                 </Typography>
                 <Typography
                   sx={{
@@ -364,7 +364,7 @@ export default function Ayuda() {
                     alignItems: "flex-end",
                     fontWeight: "bold",
                   }}>
-                  Ver productos.
+                  ¿Cómo veo los productos?
                 </Typography>
                 <Typography
                   sx={{
@@ -411,7 +411,7 @@ export default function Ayuda() {
                       alignItems: "flex-end",
                       fontWeight: "bold",
                     }}>
-                    Quitar producto del carrito.
+                    ¿Cómo quito los productos del carrito?
                   </Typography>
                   1)En el inicio selecciona el icono de carrito. <br />
                   2)Presiona sacar para quitar el producto del carrito.
@@ -434,7 +434,7 @@ export default function Ayuda() {
                       alignItems: "flex-end",
                       fontWeight: "bold",
                     }}>
-                    Modificar cantidad del producto en el carrito.
+                    ¿Cómo modifico la cantidad del producto en el carrito?
                   </Typography>
                   1)En el inicio selecciona el icono de carrito. <br />
                   2)Presiona modificar para modificar la cantidad de productos
@@ -450,7 +450,7 @@ export default function Ayuda() {
                     alignItems: "flex-end",
                     fontWeight: "bold",
                   }}>
-                  Comprar productos.
+                ¿Cómo compro un producto?
                 </Typography>
                 <Typography
                   sx={{
