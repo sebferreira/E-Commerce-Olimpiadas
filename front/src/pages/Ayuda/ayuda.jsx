@@ -48,7 +48,7 @@ export default function Ayuda() {
                 fontWeight: "bold",
                 color: "black",
               }}>
-              Ayuda
+              Preguntas frecuentes
             </Typography>
             {!user && (
               <>
