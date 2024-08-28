@@ -47,7 +47,7 @@ export default function ProductsSection() {
                 xl={2.5} */
                 key={producto.id_producto}
                 sx={{
-                  backgroundColor: "#F5F5F5",
+                  backgroundColor: "#FFFF",
                   borderRadius: 2,
                   boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
                   cursor: "pointer",
@@ -62,7 +62,7 @@ export default function ProductsSection() {
                   justifyContent: {xs: "space-evenly", sm: "space-between"},
                   color: "black",
                   padding: ".5rem",
-                  height: {xs: "250px", sm: "320px"},
+                  height: {xs: "300px", sm: "320px"},
                   width: {xs: "200px", sm: "250px"},
                 }}>
                 <Card producto={producto} />
