@@ -146,7 +146,7 @@ export default function Card({producto}) {
                 padding: "5px",
                 backgroundColor: "#D32F2F",
                 color:"#FFF",
-                textDecoration:"none",
+                textTransform:"none",
                 "&:hover": {
                   backgroundColor: "#a32F2F",
                 },
