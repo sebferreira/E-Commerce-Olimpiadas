@@ -177,7 +177,7 @@ export default function CardCarrito({producto, estado, idUser, idPedido}) {
               textTransform: "none",
             }}
             onClick={handleDelete}>
-            Sacar
+            Quitar
           </Button>
         )}
         {user &&
