@@ -142,7 +142,7 @@ export default function Card({producto}) {
               sx={{
                 minWidth: "2rem",
                  width:"6rem",
-                height: "2rem",
+                height: {xs: "2rem", sm: "2.2rem"},
                 padding: "5px",
                 backgroundColor: "#D32F2F",
                 color:"#FFF",
