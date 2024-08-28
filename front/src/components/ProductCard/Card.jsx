@@ -150,11 +150,7 @@ export default function Card({producto}) {
                 },
               }}
               onClick={handleDelete}>
-              <DeleteIcon
-                sx={{
-                  color: "#FFF",
-                }}
-              />
+              Eliminar
             </Button>
           )}
           {user && user.rol != "admin" && producto.stock > 0 && (
