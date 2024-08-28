@@ -141,8 +141,8 @@ export default function Card({producto}) {
               variant="contained"
               sx={{
                 minWidth: "2rem",
-                width: {xs: "3rem", sm: "4rem"},
-                height:"6rem",
+                 width:"6rem",
+                height: {xs: "2rem", sm: "2.5rem"},
                 padding: "5px",
                 backgroundColor: "#D32F2F",
                 color:"#FFF",
