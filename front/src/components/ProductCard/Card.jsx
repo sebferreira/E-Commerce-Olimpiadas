@@ -141,11 +141,12 @@ export default function Card({producto}) {
               variant="contained"
               sx={{
                 minWidth: "2rem",
-                width: {xs: "2rem", sm: "4rem"},
+                width: {xs: "3rem", sm: "5rem"},
                 height: {xs: "2rem", sm: "2.5rem"},
                 padding: "5px",
                 backgroundColor: "#D32F2F",
                 color:"#FFF",
+                textDecoration:"none",
                 "&:hover": {
                   backgroundColor: "#a32F2F",
                 },
