@@ -117,7 +117,7 @@ export default function Signin() {
                 margin: 0,
                 fontSize: {xs: "1rem", md: "1.2rem"},
               }}>
-              Password
+              Contraseña
             </Typography>
             <TextField
               fullWidth
